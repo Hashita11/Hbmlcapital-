@@ -100,7 +100,8 @@ footer {
 
 <section class="hero">
     <h2>Trusted Financial Solutions</h2>
-    <p>Business Loans | Personal Loans | Investment Plans</p>
+    <p> | Gold Loan|| Mortgage Loan |
+| Group Loan | EMI Calculator Details | Business Loans | Personal Loans | Investment Plans</p>
 </section>
 
 <section class="section" id="loans">
@@ -131,7 +132,34 @@ footer {
     </div>
 </section>
 
-<section class="section" id="apply">
+<section class="section" id="apply"><h2>EMI Calculator</h2>
+
+<label>Loan Amount:</label>
+<input type="number" id="loanAmount"><br><br>
+
+<label>Interest Rate (% per year):</label>
+<input type="number" id="interestRate"><br><br>
+
+<label>Tenure (months):</label>
+<input type="number" id="loanTenure"><br><br>
+
+<button onclick="calculateEMI()">Calculate EMI</button>
+
+<h3 id="emiResult"></h3>
+
+<script>
+function calculateEMI() {
+    var P = document.getElementById("loanAmount").value;
+    var annualRate = document.getElementById("interestRate").value;
+    var N = document.getElementById("loanTenure").value;
+
+    var R = annualRate / 12 / 100;
+    var EMI = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+
+    document.getElementById("emiResult").innerHTML = 
+        "Your Monthly EMI is ₹ " + EMI.toFixed(2);
+}
+</script>
     <h2>Loan Application Form</h2>
     <form>
         <input type="text" placeholder="Full Name" required>
