@@ -1,249 +1,1388 @@
-<header style="text-align:center;padding:25px;background:#ffffff;">
-  <img src="hbml-logo.png" alt="HBML Capital Logo" style="width:200px;">
-  <h2 style="color:#1a2c5b;margin-top:10px;">HBML CAPITAL</h2>
-  <p style="color:#555;">Trusted Financial Solutions</p>
-</header>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HBML Capital</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<title>HBML Capital | Trusted Financial Solutions</title>
+
+<meta name="description" content="HBML Capital provides Business Loans, Personal Loans, Gold Loans, Mortgage Loans, Vehicle Loans and Financial Services.">
+
+<meta name="keywords" content="HBML Capital, Business Loan, Personal Loan, Gold Loan, Mortgage Loan, Finance">
+
+<meta name="author" content="HBML Capital">
+
+<link rel="icon" href="images/hbml-logo.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+
 <style>
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: #f4f6f9;
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
 }
-header {
-    background: linear-gradient(90deg,#0a1f44,#1e3c72);
-    color: white;
-    padding: 15px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+html{
+scroll-behavior:smooth;
 }
-header h1 {
-    margin: 0;
+
+body{
+background:#f5f7fb;
+color:#333;
 }
-nav a {
-    color: white;
-    margin-left: 20px;
-    text-decoration: none;
-    font-weight: 500;
+
+/* NAVBAR */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#0A1F44;
+padding:15px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:999;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
 }
-.hero {
-    background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
-    url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85');
-    background-size: cover;
-    color: white;
-    text-align: center;
-    padding: 120px 20px;
+
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
 }
-.hero h2 {
-    font-size: 40px;
+
+.logo img{
+width:55px;
+height:55px;
+border-radius:50%;
+background:#fff;
+padding:5px;
 }
-.section {
-    padding: 60px 50px;
-    text-align: center;
+
+.logo h2{
+color:#fff;
+font-size:24px;
 }
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+
+.logo span{
+display:block;
+font-size:12px;
+color:#ffd700;
+font-weight:500;
 }
-.card {
-    background: white;
-    padding: 25px;
-    width: 280px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+nav{
+display:flex;
+gap:28px;
 }
-form {
-    max-width: 500px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+
+nav a{
+color:#fff;
+text-decoration:none;
+font-weight:500;
+transition:.3s;
 }
-input, textarea {
-    padding: 12px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+
+nav a:hover{
+color:#FFD700;
 }
-button {
-    padding: 12px;
-    background: #1e3c72;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+
+.apply-btn{
+background:#FFD700;
+padding:10px 22px;
+border-radius:30px;
+color:#0A1F44!important;
+font-weight:700;
 }
-footer {
-    background: #0a1f44;
-    color: white;
-    padding: 20px;
-    text-align: center;
+
+/* HERO */
+
+.hero{
+
+margin-top:85px;
+
+height:92vh;
+
+background:
+linear-gradient(rgba(10,31,68,.82),
+rgba(10,31,68,.82)),
+url("images/hero.jpg") center center/cover;
+
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+
 }
+
+.hero-content{
+
+max-width:900px;
+
+}
+
+.hero h4{
+
+color:#FFD700;
+letter-spacing:3px;
+margin-bottom:15px;
+font-size:18px;
+
+}
+
+.hero h1{
+
+font-size:58px;
+color:#fff;
+margin-bottom:20px;
+line-height:1.2;
+
+}
+
+.hero p{
+
+color:#eee;
+font-size:20px;
+margin-bottom:35px;
+
+}
+
+.hero-buttons{
+
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+
+}
+
+.btn{
+
+padding:15px 35px;
+border-radius:40px;
+text-decoration:none;
+font-size:18px;
+font-weight:600;
+transition:.3s;
+
+}
+
+.btn-primary{
+
+background:#FFD700;
+color:#0A1F44;
+
+}
+
+.btn-primary:hover{
+
+background:#fff;
+
+}
+
+.btn-outline{
+
+border:2px solid #fff;
+color:#fff;
+
+}
+
+.btn-outline:hover{
+
+background:#fff;
+color:#0A1F44;
+
+}
+
+/* STATS */
+
+.stats{
+
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+background:#fff;
+padding:45px 20px;
+
+}
+
+.stat{
+
+text-align:center;
+
+}
+
+.stat h2{
+
+font-size:42px;
+color:#0A1F44;
+
+}
+
+.stat p{
+
+color:#555;
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+header{
+
+padding:15px 20px;
+flex-direction:column;
+
+}
+
+nav{
+
+margin-top:15px;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+
+}
+
+.hero h1{
+
+font-size:34px;
+
+}
+
+.hero p{
+
+font-size:16px;
+
+}
+
+}
+  .container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+.section{
+padding:80px 0;
+}
+
+.section-title{
+text-align:center;
+font-size:38px;
+color:#0A1F44;
+margin-bottom:15px;
+}
+
+.section-subtitle{
+text-align:center;
+margin-bottom:50px;
+color:#666;
+}
+
+.service-grid,
+.why-grid,
+.process-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.service-card,
+.why-box,
+.process-card{
+background:#fff;
+padding:30px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.service-card:hover,
+.why-box:hover,
+.process-card:hover{
+transform:translateY(-10px);
+}
+
+.service-card i,
+.why-box i{
+font-size:45px;
+color:#FFD700;
+margin-bottom:20px;
+}
+
+.number{
+width:60px;
+height:60px;
+background:#FFD700;
+color:#0A1F44;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
+font-weight:bold;
+margin:0 auto 20px;
+}
+
+.why-section{
+background:#f8fbff;
+}
+  .calculator-box{
+max-width:600px;
+margin:auto;
+background:#fff;
+padding:35px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+.calculator-box input,
+.calculator-box select,
+#loanForm input,
+#loanForm select,
+#loanForm textarea{
+width:100%;
+padding:14px;
+margin:10px 0 20px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+.calc-btn,
+.submit-btn{
+width:100%;
+padding:15px;
+background:#0A1F44;
+color:#fff;
+font-size:18px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+transition:.3s;
+}
+
+.calc-btn:hover,
+.submit-btn:hover{
+background:#FFD700;
+color:#0A1F44;
+}
+
+.result-box{
+margin-top:25px;
+background:#f5f7fb;
+padding:20px;
+border-radius:10px;
+text-align:center;
+}
+
+.apply-section{
+background:#f8fbff;
+}
+
+#loanForm{
+max-width:700px;
+margin:auto;
+}
+  .testimonial-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.testimonial-card{
+background:#fff;
+padding:30px;
+border-radius:15px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+text-align:center;
+transition:.3s;
+}
+
+.testimonial-card:hover{
+transform:translateY(-8px);
+}
+
+.stars{
+font-size:28px;
+color:#FFD700;
+margin-bottom:15px;
+}
+
+.testimonial-card h4{
+margin-top:20px;
+color:#0A1F44;
+}
+
+.testimonial-card span{
+color:#777;
+font-size:14px;
+}
+
+.faq-section{
+background:#f8fbff;
+}
+
+.accordion{
+width:100%;
+background:#0A1F44;
+color:#fff;
+padding:18px;
+border:none;
+outline:none;
+cursor:pointer;
+font-size:18px;
+text-align:left;
+margin-top:15px;
+border-radius:8px;
+transition:.3s;
+}
+
+.accordion:hover{
+background:#FFD700;
+color:#0A1F44;
+}
+
+.panel{
+background:#fff;
+overflow:hidden;
+max-height:0;
+transition:max-height .3s ease-out;
+padding:0 18px;
+border-radius:0 0 8px 8px;
+}
+
+.panel p{
+padding:20px 0;
+line-height:1.8;
+}
+  .contact-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+gap:30px;
+}
+
+.contact-card{
+background:#fff;
+padding:30px;
+border-radius:15px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.contact-card a{
+text-decoration:none;
+color:#0A1F44;
+font-weight:600;
+}
+
+footer{
+background:#08152f;
+color:#fff;
+text-align:center;
+padding:60px 20px;
+}
+
+.footer-links{
+margin:25px 0;
+}
+
+.footer-links a{
+color:#fff;
+margin:0 15px;
+text-decoration:none;
+}
+
+.social-icons{
+margin-top:25px;
+}
+
+.social-icons a{
+display:inline-block;
+width:50px;
+height:50px;
+line-height:50px;
+text-align:center;
+border-radius:50%;
+background:#FFD700;
+color:#0A1F44;
+margin:8px;
+font-size:20px;
+}
+
+.whatsapp{
+position:fixed;
+bottom:25px;
+right:25px;
+width:60px;
+height:60px;
+background:#25D366;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+color:#fff;
+text-decoration:none;
+z-index:999;
+}
+
+.callbtn{
+position:fixed;
+bottom:100px;
+right:25px;
+width:60px;
+height:60px;
+background:#0A1F44;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:25px;
+color:#fff;
+text-decoration:none;
+z-index:999;
+}
+
+#topBtn{
+display:none;
+position:fixed;
+bottom:175px;
+right:25px;
+width:50px;
+height:50px;
+border:none;
+border-radius:50%;
+background:#FFD700;
+font-size:22px;
+cursor:pointer;
+z-index:999;
+}
+
 </style>
+
 </head>
 
 <body>
 
 <header>
-    <h1>HBML Capital</h1>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#loans">Loans</a>
-        <a href="#invest">Investments</a>
-        <a href="#apply">Apply</a>
-        <a href="#contact">Contact</a>
-    </nav>
+
+<div class="logo">
+
+<img src="images/hbml-logo.png">
+
+<div>
+
+<h2>HBML Capital</h2>
+
+<span>Trusted Financial Solutions</span>
+
+</div>
+
+</div>
+
+<nav>
+
+<a href="#">Home</a>
+
+<a href="#services">Loans</a>
+
+<a href="#about">About</a>
+
+<a href="#calculator">EMI</a>
+
+<a href="#contact">Contact</a>
+
+<a href="#apply" class="apply-btn">Apply Now</a>
+
+</nav>
+
 </header>
 
 <section class="hero">
-    <h2>Trusted Financial Solutions</h2>
-    <p> | Gold Loan|| Mortgage Loan |
-| Group Loan | EMI Calculator Details | Business Loans | Personal Loans | Investment Plans</p>
+
+<div class="hero-content">
+
+<h4>WELCOME TO HBML CAPITAL</h4>
+
+<h1>Empowering Your Financial Growth</h1>
+
+<p>
+
+Business Loans • Personal Loans • Gold Loans • Mortgage Loans • Vehicle Loans • Group Loans
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="#apply" class="btn btn-primary">
+
+Apply for Loan
+
+</a>
+
+<a href="#calculator" class="btn btn-outline">
+
+Calculate EMI
+
+</a>
+
+</div>
+
+</div>
+
 </section>
 
-<section class="section" id="loans">
-    <h2>Our Loan Services</h2>
-    <div class="card-container">
-        <div class="card">
-           <h3>Group Loans</h3>
-            <p>Fast approval for small & medium businesses women.</p>
-        </div> 
-          <div class="card">
-          <h3>Business Loan</h3>
-            <p>Fast approval for small & medium businesses.</p>
-        </div>
-        <div class="card">
-            <h3>Personal Loan</h3>
-            <p>Quick loans with flexible repayment options.</p>
-        </div>
-        <div class="card">
-            <h3>Gold Loan</h3>
-            <p>Quick & Secure Gold Loan Facility</p>
-        </div>
-        <div class="card">
-            <h3>Mortgage Loan</h3>
-            <p>Loan Against Property</p>
-        </div>
-        <div class="card">
-            <h3>Vehicle Loan</h3>
-            <p>Affordable finance for two & four wheelers.</p>
-        </div>
-    </div>
+<section class="stats">
+
+<div class="stat">
+
+<h2>5000+</h2>
+
+<p>Happy Customers</p>
+
+</div>
+
+<div class="stat">
+
+<h2>₹50Cr+</h2>
+
+<p>Loans Facilitated</p>
+
+</div>
+
+<div class="stat">
+
+<h2>98%</h2>
+
+<p>Approval Support</p>
+
+</div>
+
+<div class="stat">
+
+<h2>24×7</h2>
+
+<p>Customer Assistance</p>
+
+</div>
+
+</section>
+<!-- OUR SERVICES -->
+
+<section id="services" class="section">
+
+<div class="container">
+
+<h2 class="section-title">Our Loan Services</h2>
+
+<p class="section-subtitle">
+We offer reliable financial solutions tailored to your personal and business needs.
+</p>
+
+<div class="service-grid">
+
+<div class="service-card">
+<i class="fas fa-users"></i>
+<h3>Group Loan</h3>
+<p>Special financial support for women self-help groups and community development.</p>
+</div>
+
+<div class="service-card">
+<i class="fas fa-briefcase"></i>
+<h3>Business Loan</h3>
+<p>Expand your business with flexible funding and quick approval.</p>
+</div>
+
+<div class="service-card">
+<i class="fas fa-user"></i>
+<h3>Personal Loan</h3>
+<p>Instant personal loans for medical, education and family needs.</p>
+</div>
+
+<div class="service-card">
+<i class="fas fa-coins"></i>
+<h3>Gold Loan</h3>
+<p>Get instant cash against your gold with transparent valuation.</p>
+</div>
+
+<div class="service-card">
+<i class="fas fa-building"></i>
+<h3>Mortgage Loan</h3>
+<p>Loan against residential or commercial property at competitive rates.</p>
+</div>
+
+<div class="service-card">
+<i class="fas fa-car"></i>
+<h3>Vehicle Loan</h3>
+<p>Finance for two-wheelers, cars and commercial vehicles.</p>
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<section class="section" id="invest">
-    <h2>Investment Plans</h2>
-    <div class="card-container">
-        <div class="card">
-            <h3>5 Year Lock Plan</h3>
-            <p>Attractive returns 10% - 12%*</p>
-        </div>
-    </div>
+<!-- WHY CHOOSE US -->
+
+<section id="about" class="why-section">
+
+<div class="container">
+
+<h2 class="section-title">Why Choose HBML Capital?</h2>
+
+<div class="why-grid">
+
+<div class="why-box">
+<i class="fas fa-bolt"></i>
+<h3>Quick Approval</h3>
+<p>Fast verification and speedy processing.</p>
+</div>
+
+<div class="why-box">
+<i class="fas fa-shield-alt"></i>
+<h3>Safe & Secure</h3>
+<p>Your personal information remains completely protected.</p>
+</div>
+
+<div class="why-box">
+<i class="fas fa-hand-holding-usd"></i>
+<h3>Affordable EMI</h3>
+<p>Flexible repayment options for every customer.</p>
+</div>
+
+<div class="why-box">
+<i class="fas fa-headset"></i>
+<h3>Dedicated Support</h3>
+<p>Friendly customer service throughout the loan journey.</p>
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<section class="section" id="apply"><h2>EMI Calculator</h2>
+<!-- LOAN PROCESS -->
 
-<label>Loan Amount:</label>
-<input type="number" id="loanAmount"><br><br>
+<section class="section">
 
-<label>Interest Rate (% per year):</label>
-<input type="number" id="interestRate"><br><br>
+<div class="container">
 
-<label>Tenure (months):</label>
-<input type="number" id="loanTenure"><br><br>
+<h2 class="section-title">Simple Loan Process</h2>
 
-<button onclick="calculateEMI()">Calculate EMI</button>
+<div class="process-grid">
 
-<h3 id="emiResult"></h3>
+<div class="process-card">
+
+<div class="number">1</div>
+
+<h3>Apply</h3>
+
+<p>Fill out the online application form.</p>
+
+</div>
+
+<div class="process-card">
+
+<div class="number">2</div>
+
+<h3>Verify</h3>
+
+<p>Submit required documents for verification.</p>
+
+</div>
+
+<div class="process-card">
+
+<div class="number">3</div>
+
+<h3>Approval</h3>
+
+<p>Our team reviews and approves your request.</p>
+
+</div>
+
+<div class="process-card">
+
+<div class="number">4</div>
+
+<h3>Disbursement</h3>
+
+<p>Loan amount is released after successful approval.</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<!-- ================= EMI CALCULATOR ================= -->
+
+<section id="calculator" class="section">
+
+<div class="container">
+
+<h2 class="section-title">EMI Calculator</h2>
+
+<p class="section-subtitle">
+Calculate your monthly EMI instantly.
+</p>
+
+<div class="calculator-box">
+
+<label>Loan Amount (₹)</label>
+<input type="number" id="loanAmount" placeholder="500000">
+
+<label>Interest Rate (% Per Year)</label>
+<input type="number" id="interestRate" placeholder="12">
+
+<label>Loan Tenure (Months)</label>
+<input type="number" id="loanTenure" placeholder="60">
+
+<button class="calc-btn" onclick="calculateEMI()">
+Calculate EMI
+</button>
+
+<div class="result-box">
+
+<p><strong>Monthly EMI</strong></p>
+
+<h2 id="emiResult">₹0</h2>
+
+<hr>
+
+<p>Total Interest</p>
+
+<h3 id="interestResult">₹0</h3>
+
+<p>Total Payment</p>
+
+<h3 id="totalResult">₹0</h3>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= APPLICATION FORM ================= -->
+
+<section id="apply" class="section apply-section">
+
+<div class="container">
+
+<h2 class="section-title">Apply For Loan</h2>
+
+<p class="section-subtitle">
+Fill the application and our executive will contact you shortly.
+</p>
+
+<form id="loanForm">
+
+<input
+type="text"
+placeholder="Full Name"
+required>
+
+<input
+type="tel"
+placeholder="Mobile Number"
+required>
+
+<input
+type="email"
+placeholder="Email Address">
+
+<select required>
+
+<option value="">Select Loan Type</option>
+
+<option>Business Loan</option>
+
+<option>Personal Loan</option>
+
+<option>Gold Loan</option>
+
+<option>Mortgage Loan</option>
+
+<option>Vehicle Loan</option>
+
+<option>Group Loan</option>
+
+</select>
+
+<input
+type="number"
+placeholder="Required Loan Amount">
+
+<textarea
+rows="5"
+placeholder="Address"></textarea>
+
+<button
+type="submit"
+class="submit-btn">
+
+Submit Application
+
+</button>
+
+</form>
+
+</div>
+
+</section>
 
 <script>
-function calculateEMI() {
-    var P = document.getElementById("loanAmount").value;
-    var annualRate = document.getElementById("interestRate").value;
-    var N = document.getElementById("loanTenure").value;
 
-    var R = annualRate / 12 / 100;
-    var EMI = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+function calculateEMI(){
 
-    document.getElementById("emiResult").innerHTML = 
-        "Your Monthly EMI is ₹ " + EMI.toFixed(2);
+let P=parseFloat(document.getElementById("loanAmount").value);
+
+let annual=parseFloat(document.getElementById("interestRate").value);
+
+let N=parseFloat(document.getElementById("loanTenure").value);
+
+if(isNaN(P)||isNaN(annual)||isNaN(N)){
+
+alert("Please enter all values.");
+
+return;
+
 }
+
+let R=annual/12/100;
+
+let EMI=(P*R*Math.pow(1+R,N))/(Math.pow(1+R,N)-1);
+
+let total=EMI*N;
+
+let interest=total-P;
+
+document.getElementById("emiResult").innerHTML="₹ "+EMI.toFixed(2);
+
+document.getElementById("interestResult").innerHTML="₹ "+interest.toFixed(2);
+
+document.getElementById("totalResult").innerHTML="₹ "+total.toFixed(2);
+
+}
+
 </script>
-    <h2>Loan Application Form</h2>
-    <form>
-        <input type="text" placeholder="Full Name" required>
-        <input type="tel" placeholder="Mobile Number" required>
-        <input type="text" placeholder="Loan Type" required>
-        <textarea placeholder="Address" required></textarea>
-        <button type="submit">Submit Application</button>
-    </form>
+<!-- ================= TESTIMONIALS ================= -->
+
+<section class="section">
+
+<div class="container">
+
+<h2 class="section-title">
+What Our Customers Say
+</h2>
+
+<div class="testimonial-grid">
+
+<div class="testimonial-card">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+"HBML Capital processed my Business Loan very quickly.
+Excellent customer support and transparent process."
+</p>
+
+<h4>— Ramesh Kumar</h4>
+
+<span>Business Owner</span>
+
+</div>
+
+<div class="testimonial-card">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+"I received my Gold Loan within one day.
+Highly recommended."
+</p>
+
+<h4>— Lakshmi Devi</h4>
+
+<span>Gold Loan Customer</span>
+
+</div>
+
+<div class="testimonial-card">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+"Very professional team.
+Easy documentation and affordable EMI."
+</p>
+
+<h4>— Srinivas Rao</h4>
+
+<span>Personal Loan Customer</span>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<section class="section" id="contact">
-    <h2>Contact Us</h2>
+<!-- ================= FAQ ================= -->
 
-    <p>📍 10-310, Khamdhenunagar, Velpur 534222, Tanuku, A.P</p>
+<section class="section faq-section">
 
-    <p>
-        📞 <a href="tel:9000846009">9000846009</a> |
-        <a href="tel:9059988802">9059988802</a> |
-        <a href="tel:9618899787">9618899787</a>
-    </p>
+<div class="container">
 
-    <p>
-        📧 <a href="mailto:info@hbmlcapital.in">info@hbmlcapital.in</a>
-    </p>
-    <p>
-        <a href="Contact Us
-Phone: +91 9000846009
-Email: info@hbmlcapital.in
-Address: Tanuku, Andhra Pradesh">
-    </p>        
+<h2 class="section-title">
+Frequently Asked Questions
+</h2>
 
-    <p>
-        🌐 <a href="https://hbmlcapital.in" target="_blank">www.hbmlcapital.in</a>
-    </p>
+<div class="faq">
 
-    <div style="margin-top:20px;">
-        <a href="https://wa.me/919000846009?text=Hi" target="_blank">💬 WhatsApp</a> |
-        <a href="https://facebook.com/" target="_blank">Facebook</a> |
-        <a href="https://instagram.com/" target="_blank">Instagram</a> |
-        <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
-    </div>
+<button class="accordion">
+
+What types of loans do you provide?
+
+</button>
+
+<div class="panel">
+
+<p>
+
+Business Loan, Personal Loan, Gold Loan, Mortgage Loan, Vehicle Loan and Group Loans.
+
+</p>
+
+</div>
+
+<button class="accordion">
+
+How long does loan approval take?
+
+</button>
+
+<div class="panel">
+
+<p>
+
+Loan approval depends on document verification. Eligible applications are processed as quickly as possible.
+
+</p>
+
+</div>
+
+<button class="accordion">
+
+Which documents are required?
+
+</button>
+
+<div class="panel">
+
+<p>
+
+Aadhaar Card, PAN Card, Address Proof, Income Proof, Bank Statement and other documents depending on the loan type.
+
+</p>
+
+</div>
+
+<button class="accordion">
+
+How can I contact HBML Capital?
+
+</button>
+
+<div class="panel">
+
+<p>
+
+Call 9000846009 or email info@hbmlcapital.in.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
+
+<script>
+
+const acc=document.getElementsByClassName("accordion");
+
+for(let i=0;i<acc.length;i++){
+
+acc[i].addEventListener("click",function(){
+
+this.classList.toggle("active");
+
+let panel=this.nextElementSibling;
+
+if(panel.style.maxHeight){
+
+panel.style.maxHeight=null;
+
+}else{
+
+panel.style.maxHeight=panel.scrollHeight+"px";
+
+}
+
+});
+
+}
+
+</script>
+  <!-- ================= CONTACT ================= -->
+
+<section id="contact" class="section contact-section">
+
+<div class="container">
+
+<h2 class="section-title">Contact Us</h2>
+
+<p class="section-subtitle">
+We're here to help with all your financial needs.
+</p>
+
+<div class="contact-grid">
+
+<div class="contact-card">
+
+<h3>📍 Office Address</h3>
+
+<p>
+10-310, Khamdhenunagar,<br>
+Railway Station Road,<br>
+Velpur - 534222,<br>
+West Godavari,<br>
+Andhra Pradesh
+</p>
+
+</div>
+
+<div class="contact-card">
+
+<h3>📞 Phone Numbers</h3>
+
+<p>
+<a href="tel:+919000846009">9000846009</a><br>
+<a href="tel:+919059988802">9059988802</a><br>
+<a href="tel:+919618899787">9618899787</a>
+</p>
+
+<h3 style="margin-top:20px;">📧 Email</h3>
+
+<p>
+
+<a href="mailto:info@hbmlcapital.in">
+
+info@hbmlcapital.in
+
+</a>
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- MAP -->
+
+<section>
+
+<iframe
+
+src="https://maps.google.com/maps?q=Velpur%20Andhra%20Pradesh&t=&z=13&ie=UTF8&iwloc=&output=embed"
+
+width="100%"
+
+height="350"
+
+style="border:0;"
+
+loading="lazy">
+
+</iframe>
+
+</section>
+
+<!-- FOOTER -->
 
 <footer>
-    <p>© 2026 HBML Capital. All Rights Reserved.</p>
 
-    <p style="margin-top:10px; font-size:14px; color:#cccccc;">
-        HBML Capital is a private finance company providing loan services only.
-        We do not accept or collect public deposits under any circumstances.
-        We are not a bank or NBFC. Loan approvals are subject to internal policies and verification.
-    </p>
-</footer>
-<a href="https://wa.me/919000846009" 
-   target="_blank" 
-   style="position:fixed;
-          bottom:20px;
-          right:20px;
-          background:#25D366;
-          color:white;
-          padding:15px 18px;
-          border-radius:50px;
-          text-decoration:none;
-          font-weight:bold;
-          box-shadow:0 4px 10px rgba(0,0,0,0.3);">
-   💬 Chat
+<div class="container">
+
+<h2>HBML CAPITAL</h2>
+
+<p>
+
+Trusted Financial Solutions
+
+</p>
+
+<div class="footer-links">
+
+<a href="#">Home</a>
+
+<a href="#services">Loans</a>
+
+<a href="#calculator">EMI</a>
+
+<a href="#apply">Apply</a>
+
+<a href="#contact">Contact</a>
+
+</div>
+
+<div class="social-icons">
+
+<a href="https://wa.me/919000846009" target="_blank">
+
+<i class="fab fa-whatsapp"></i>
+
 </a>
+
+<a href="#" target="_blank">
+
+<i class="fab fa-facebook-f"></i>
+
+</a>
+
+<a href="#" target="_blank">
+
+<i class="fab fa-instagram"></i>
+
+</a>
+
+<a href="#" target="_blank">
+
+<i class="fab fa-linkedin-in"></i>
+
+</a>
+
+</div>
+
+<hr style="margin:25px 0;opacity:.3;">
+
+<p style="font-size:14px;line-height:1.8;">
+
+HBML Capital provides financial assistance and loan facilitation services.
+We do not accept public deposits.
+Loan approvals are subject to eligibility, documentation, verification and internal policies.
+
+</p>
+
+<p style="margin-top:20px;">
+
+© 2026 HBML Capital. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+
+<a
+
+href="https://wa.me/919000846009"
+
+class="whatsapp"
+
+target="_blank">
+
+<i class="fab fa-whatsapp"></i>
+
+</a>
+
+<!-- FLOATING CALL -->
+
+<a
+
+href="tel:+919000846009"
+
+class="callbtn">
+
+<i class="fas fa-phone"></i>
+
+</a>
+
+<!-- SCROLL BUTTON -->
+
+<button onclick="topFunction()" id="topBtn">
+
+↑
+
+</button>
+
+<script>
+
+let mybutton=document.getElementById("topBtn");
+
+window.onscroll=function(){
+
+if(document.body.scrollTop>200||document.documentElement.scrollTop>200){
+
+mybutton.style.display="block";
+
+}else{
+
+mybutton.style.display="none";
+
+}
+
+}
+
+function topFunction(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:'smooth'
+
+});
+
+}
+
+</script>
+
 </body>
-    
+
 </html>
