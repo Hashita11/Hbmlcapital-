@@ -3056,25 +3056,37 @@ panel.style.maxHeight=panel.scrollHeight+"px";
 }
   const counters = document.querySelectorAll(".counter");
 
-counters.forEach(counter => {
-    counter.innerText = "0";
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
 
-    const updateCounter = () => {
-        const target = +counter.dataset.target;
-        const count = +counter.innerText;
-        const increment = Math.ceil(target / 100);
+      const counter = entry.target;
+      const target = parseInt(counter.dataset.target);
+
+      let count = 0;
+      const speed = target / 100;
+
+      const updateCounter = () => {
+        count += speed;
 
         if (count < target) {
-            counter.innerText = Math.min(count + increment, target);
-            setTimeout(updateCounter, 20);
+          counter.innerText = Math.ceil(count);
+          requestAnimationFrame(updateCounter);
         } else {
-            counter.innerText = target.toLocaleString();
+          counter.innerText = target.toLocaleString();
         }
-    };
+      };
 
-    updateCounter();
+      updateCounter();
+      observer.unobserve(counter);
+
+    }
+  });
+}, {
+  threshold: 0.4
 });
 
+counters.forEach(counter => observer.observe(counter));
 </script>
 
 </body>
