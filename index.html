@@ -782,6 +782,29 @@ color:#666;
 line-height:1.8;
 font-size:16px;
 }
+  .eligibility-section{
+padding:90px 0;
+background:#eef4fb;
+}
+
+.eligibility-box{
+max-width:650px;
+margin:auto;
+background:#fff;
+padding:35px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+.eligibility-box input,
+.eligibility-box select{
+width:100%;
+padding:14px;
+margin:12px 0 20px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
 
 </style>
 
@@ -1252,6 +1275,65 @@ We offer reliable financial solutions tailored to your personal and business nee
 <i class="fas fa-headset"></i>
 <h3>Dedicated Support</h3>
 <p>Friendly customer service throughout the loan journey.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+  <!-- ================= LOAN ELIGIBILITY ================= -->
+
+<section class="eligibility-section" id="eligibility">
+
+<div class="container">
+
+<h2 class="section-title">Loan Eligibility Checker</h2>
+
+<p class="section-subtitle">
+Check your estimated eligibility before applying.
+</p>
+
+<div class="eligibility-box">
+
+<label>Monthly Income (₹)</label>
+<input type="number" id="income" placeholder="Enter Monthly Income">
+
+<label>Existing Monthly EMI (₹)</label>
+<input type="number" id="existingEmi" placeholder="Existing EMI">
+
+<label>Required Loan Amount (₹)</label>
+<input type="number" id="loanNeed" placeholder="Required Loan Amount">
+
+<label>Age</label>
+<input type="number" id="age" placeholder="Age">
+
+<label>Employment Type</label>
+
+<select id="employment">
+
+<option>Salaried</option>
+
+<option>Business</option>
+
+<option>Self Employed</option>
+
+<option>Professional</option>
+
+</select>
+
+<button onclick="checkEligibility()" class="calc-btn">
+
+Check Eligibility
+
+</button>
+
+<div class="result-box">
+
+<h3 id="eligibleResult"></h3>
+
+<h4 id="loanSuggestion"></h4>
+
 </div>
 
 </div>
@@ -1892,6 +1974,54 @@ counter.innerText=target;
 updateCounter();
 
 });
+
+
+
+function checkEligibility(){
+
+let income=parseFloat(document.getElementById("income").value);
+
+let emi=parseFloat(document.getElementById("existingEmi").value);
+
+let loan=parseFloat(document.getElementById("loanNeed").value);
+
+let age=parseFloat(document.getElementById("age").value);
+
+if(isNaN(income)||isNaN(emi)||isNaN(loan)||isNaN(age)){
+
+alert("Please fill all fields");
+
+return;
+
+}
+
+let available=income*0.5-emi;
+
+if(age<21||age>60){
+
+document.getElementById("eligibleResult").innerHTML="❌ Age is outside the supported range.";
+
+document.getElementById("loanSuggestion").innerHTML="";
+
+return;
+
+}
+
+if(available>10000){
+
+document.getElementById("eligibleResult").innerHTML="✅ You may be eligible.";
+
+document.getElementById("loanSuggestion").innerHTML="Estimated eligible amount: ₹"+Math.round(available*60).toLocaleString();
+
+}else{
+
+document.getElementById("eligibleResult").innerHTML="⚠ Eligibility needs further review.";
+
+document.getElementById("loanSuggestion").innerHTML="Please contact HBML Capital for assessment.";
+
+}
+
+}
 
 
 </script>
