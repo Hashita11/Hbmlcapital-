@@ -694,49 +694,56 @@ justify-content:center;
 }
 
 }
+.achievement-section{
+    padding:90px 0;
+    background:linear-gradient(135deg,#0A1F44,#1E3C72);
+    color:#fff;
+}
+
 .achievement-section .section-title{
-    color:#ffffff;
+    color:#FFD700;
+    font-size:42px;
+    font-weight:700;
+    text-align:center;
 }
 
 .achievement-section .section-subtitle{
-    color:#e6e6e6;
-}
-
-.achievement-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
-margin-top:50px;
+    color:#ffffff;
+    opacity:0.95;
+    text-align:center;
+    margin-bottom:50px;
 }
 
 .achievement-card{
-background:rgba(255,255,255,.08);
-padding:35px 20px;
-border-radius:15px;
-text-align:center;
-backdrop-filter:blur(8px);
-transition:.3s;
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:18px;
+    padding:35px 20px;
+    text-align:center;
+    transition:.3s;
 }
 
 .achievement-card:hover{
-transform:translateY(-10px);
-background:rgba(255,255,255,.15);
+    transform:translateY(-8px);
+    background:rgba(255,255,255,0.18);
 }
 
 .achievement-card i{
-font-size:48px;
-color:#FFD700;
-margin-bottom:20px;
+    color:#FFD700;
+    font-size:50px;
+    margin-bottom:20px;
 }
 
 .achievement-card h2{
-font-size:42px;
-margin-bottom:10px;
-color:#fff;
+    color:#FFFFFF;
+    font-size:46px;
+    font-weight:700;
 }
 
 .achievement-card h4{
-font-weight:500;
+    color:#FFFFFF;
+    font-size:18px;
+    margin-top:10px;
 }
   /* WHY CHOOSE */
 
@@ -3050,21 +3057,22 @@ panel.style.maxHeight=panel.scrollHeight+"px";
   const counters = document.querySelectorAll(".counter");
 
 counters.forEach(counter => {
-    const target = Number(counter.dataset.target);
-    let count = 0;
+    counter.innerText = "0";
 
-    const update = () => {
-        count += Math.ceil(target / 100);
+    const updateCounter = () => {
+        const target = +counter.dataset.target;
+        const count = +counter.innerText;
+        const increment = Math.ceil(target / 100);
 
-        if (count >= target) {
-            counter.innerText = target;
+        if (count < target) {
+            counter.innerText = Math.min(count + increment, target);
+            setTimeout(updateCounter, 20);
         } else {
-            counter.innerText = count;
-            requestAnimationFrame(update);
+            counter.innerText = target.toLocaleString();
         }
     };
 
-    update();
+    updateCounter();
 });
 
 </script>
