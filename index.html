@@ -998,6 +998,376 @@ background:#0A1F44;
 color:#fff;
 
 }
+  /* ================= LOAN PROCESS ================= */
+
+.loan-process{
+
+padding:90px 0;
+
+background:#ffffff;
+
+}
+
+.timeline{
+
+position:relative;
+
+max-width:900px;
+
+margin:50px auto;
+
+}
+
+.timeline::before{
+
+content:'';
+
+position:absolute;
+
+left:35px;
+
+top:0;
+
+width:4px;
+
+height:100%;
+
+background:#FFD700;
+
+}
+
+.timeline-item{
+
+display:flex;
+
+margin-bottom:40px;
+
+position:relative;
+
+}
+
+.timeline-icon{
+
+width:70px;
+
+height:70px;
+
+background:#0A1F44;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+color:#FFD700;
+
+font-size:28px;
+
+flex-shrink:0;
+
+z-index:2;
+
+}
+
+.timeline-content{
+
+margin-left:30px;
+
+background:#f8fbff;
+
+padding:25px;
+
+border-radius:12px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+width:100%;
+
+}
+
+.timeline-content h3{
+
+color:#FFD700;
+
+margin-bottom:5px;
+
+}
+
+.timeline-content h4{
+
+color:#0A1F44;
+
+margin-bottom:12px;
+
+}
+
+.timeline-content p{
+
+color:#666;
+
+line-height:1.8;
+
+}
+
+@media(max-width:768px){
+
+.timeline::before{
+
+left:30px;
+
+}
+
+.timeline-content{
+
+margin-left:20px;
+
+}
+
+}
+  /* ================= BRANCHES ================= */
+
+.branches{
+
+padding:90px 0;
+
+background:#f8fbff;
+
+}
+
+.branch-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+gap:30px;
+
+margin-top:50px;
+
+}
+
+.branch-card{
+
+background:#fff;
+
+padding:35px;
+
+border-radius:18px;
+
+text-align:center;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+transition:.4s;
+
+}
+
+.branch-card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.branch-card i{
+
+font-size:55px;
+
+color:#FFD700;
+
+margin-bottom:20px;
+
+}
+
+.branch-card h3{
+
+color:#0A1F44;
+
+margin-bottom:15px;
+
+}
+
+.branch-card p{
+
+line-height:1.9;
+
+color:#555;
+
+margin-bottom:15px;
+
+}
+
+.branch-btn{
+
+display:inline-block;
+
+padding:12px 28px;
+
+background:#0A1F44;
+
+color:#fff;
+
+text-decoration:none;
+
+border-radius:30px;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.branch-btn:hover{
+
+background:#FFD700;
+
+color:#0A1F44;
+
+}
+  /* ================= TESTIMONIALS ================= */
+
+.testimonials{
+
+padding:90px 0;
+
+background:#ffffff;
+
+text-align:center;
+
+}
+
+.testimonial-slider{
+
+max-width:800px;
+
+margin:auto;
+
+position:relative;
+
+}
+
+.testimonial{
+
+display:none;
+
+background:#f8fbff;
+
+padding:40px;
+
+border-radius:15px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.testimonial.active{
+
+display:block;
+
+animation:fade 1s;
+
+}
+
+.testimonial p{
+
+font-size:18px;
+
+line-height:1.8;
+
+color:#555;
+
+}
+
+.testimonial h4{
+
+margin-top:20px;
+
+color:#0A1F44;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+  /* ================= FAQ ================= */
+
+.faq-section{
+
+padding:90px 0;
+
+background:#f8fbff;
+
+}
+
+.faq-item{
+
+background:#fff;
+
+margin-bottom:20px;
+
+border-radius:12px;
+
+overflow:hidden;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.faq-question{
+
+width:100%;
+
+padding:20px;
+
+background:#0A1F44;
+
+color:#fff;
+
+border:none;
+
+font-size:18px;
+
+text-align:left;
+
+cursor:pointer;
+
+font-weight:600;
+
+}
+
+.faq-answer{
+
+display:none;
+
+padding:20px;
+
+background:#fff;
+
+color:#555;
+
+line-height:1.8;
+
+}
+
+.faq-answer.show{
+
+display:block;
+
+}
   
 </style>
 
@@ -1772,6 +2142,91 @@ Compare different loan options to find the one that best suits your needs.
 </div>
 
 </section>
+  <!-- ================= HOW IT WORKS ================= -->
+
+<section class="loan-process">
+
+<div class="container">
+
+<h2 class="section-title">How Our Loan Process Works</h2>
+
+<p class="section-subtitle">
+Simple, Transparent and Customer Friendly Process
+</p>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<div class="timeline-icon">
+<i class="fas fa-edit"></i>
+</div>
+<div class="timeline-content">
+<h3>Step 1</h3>
+<h4>Submit Application</h4>
+<p>Complete the online loan application with your personal and financial details.</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-icon">
+<i class="fas fa-file-alt"></i>
+</div>
+<div class="timeline-content">
+<h3>Step 2</h3>
+<h4>Document Verification</h4>
+<p>Submit the required KYC and supporting documents for verification.</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-icon">
+<i class="fas fa-search"></i>
+</div>
+<div class="timeline-content">
+<h3>Step 3</h3>
+<h4>Eligibility Review</h4>
+<p>Our team reviews your application based on eligibility and documentation.</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-icon">
+<i class="fas fa-check-circle"></i>
+</div>
+<div class="timeline-content">
+<h3>Step 4</h3>
+<h4>Approval</h4>
+<p>Eligible applications move to the approval stage after successful review.</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-icon">
+<i class="fas fa-wallet"></i>
+</div>
+<div class="timeline-content">
+<h3>Step 5</h3>
+<h4>Loan Disbursement</h4>
+<p>Approved loans are processed according to the agreed terms and conditions.</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-icon">
+<i class="fas fa-headset"></i>
+</div>
+<div class="timeline-content">
+<h3>Step 6</h3>
+<h4>Customer Support</h4>
+<p>Our team remains available to assist you throughout the repayment period.</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
   
 <!-- LOAN PROCESS -->
 
@@ -1828,6 +2283,201 @@ Compare different loan options to find the one that best suits your needs.
 </div>
 
 </section>
+  <!-- ================= BRANCHES ================= -->
+
+<section class="branches" id="branches">
+
+<div class="container">
+
+<h2 class="section-title">Our Branch Network</h2>
+
+<p class="section-subtitle">
+Visit our office or contact us for professional financial assistance.
+</p>
+
+<div class="branch-grid">
+
+<div class="branch-card">
+
+<i class="fas fa-building"></i>
+
+<h3>Head Office</h3>
+
+<p><b>HBML Capital</b></p>
+
+<p>
+10-310, Khamdhenunagar<br>
+Velpur – 534222<br>
+Tanuku, Andhra Pradesh
+</p>
+
+<p>
+📞 +91 9000846009<br>
+📞 +91 9059988802
+</p>
+
+<p>
+✉ info@hbmlcapital.in
+</p>
+
+<p>
+🕘 Monday – Saturday<br>
+9:30 AM – 6:30 PM
+</p>
+
+<a href="https://maps.google.com/?q=Velpur,Andhra+Pradesh"
+target="_blank"
+class="branch-btn">
+
+Get Directions
+
+</a>
+
+</div>
+
+<div class="branch-card">
+
+<i class="fas fa-phone-alt"></i>
+
+<h3>Customer Care</h3>
+
+<p>
+Need help choosing the right loan?
+</p>
+
+<p>
+
+✔ Business Loans<br>
+
+✔ Personal Loans<br>
+
+✔ Gold Loans<br>
+
+✔ Mortgage Loans<br>
+
+✔ Group Loans
+
+</p>
+
+<p>
+
+📞 +91 9000846009
+
+</p>
+
+<a href="tel:9000846009"
+
+class="branch-btn">
+
+Call Now
+
+</a>
+
+</div>
+
+<div class="branch-card">
+
+<i class="fab fa-whatsapp"></i>
+
+<h3>WhatsApp Support</h3>
+
+<p>
+
+Chat directly with our team for:
+
+</p>
+
+<p>
+
+✔ Loan Enquiry<br>
+
+✔ EMI Details<br>
+
+✔ Application Status<br>
+
+✔ Customer Support
+
+</p>
+
+<a href="https://wa.me/919000846009"
+
+target="_blank"
+
+class="branch-btn">
+
+Chat on WhatsApp
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+  <!-- ================= TESTIMONIALS ================= -->
+
+<section class="testimonials">
+
+<div class="container">
+
+<h2 class="section-title">What Our Customers Say</h2>
+
+<p class="section-subtitle">
+Trusted by customers for reliable financial services.
+</p>
+
+<div class="testimonial-slider">
+
+<div class="testimonial active">
+
+<p>
+★★★★★
+</p>
+
+<p>
+"HBML Capital guided me throughout the loan process. The team was supportive and the documentation process was clear."
+</p>
+
+<h4>— Business Customer</h4>
+
+</div>
+
+<div class="testimonial">
+
+<p>
+★★★★★
+</p>
+
+<p>
+"I received prompt assistance and the repayment options were explained clearly. A smooth experience."
+</p>
+
+<h4>— Personal Loan Customer</h4>
+
+</div>
+
+<div class="testimonial">
+
+<p>
+★★★★★
+</p>
+
+<p>
+"The staff answered all my questions patiently. I appreciate the transparent communication."
+</p>
+
+<h4>— Gold Loan Customer</h4>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+  
 <!-- ================= EMI CALCULATOR ================= -->
 
 <section id="calculator" class="section">
@@ -2050,7 +2700,97 @@ Easy documentation and affordable EMI."
 </div>
 
 </section>
+  
+<!-- ================= FAQ ================= -->
 
+<section class="faq-section" id="faq">
+
+<div class="container">
+
+<h2 class="section-title">Frequently Asked Questions</h2>
+
+<p class="section-subtitle">
+Find answers to common questions about our loan services.
+</p>
+
+<div class="faq-item">
+
+<button class="faq-question">
+What documents are required for a loan?
+</button>
+
+<div class="faq-answer">
+<p>
+Requirements vary by loan type. Common documents include identity proof, address proof, income proof, and any loan-specific documents requested during the application process.
+</p>
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<button class="faq-question">
+How long does the loan process take?
+</button>
+
+<div class="faq-answer">
+<p>
+Processing time depends on the loan type, document verification, and internal review. Our team will keep you informed throughout the process.
+</p>
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<button class="faq-question">
+Can I repay my loan early?
+</button>
+
+<div class="faq-answer">
+<p>
+Early repayment options may be available depending on the loan agreement. Please contact our customer support team for details.
+</p>
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<button class="faq-question">
+How can I check my loan application status?
+</button>
+
+<div class="faq-answer">
+<p>
+You can contact our customer support team by phone or WhatsApp for updates regarding your application.
+</p>
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<button class="faq-question">
+How can I contact HBML Capital?
+</button>
+
+<div class="faq-answer">
+<p>
+
+📞 +91 9000846009<br>
+
+📧 info@hbmlcapital.in
+
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+  
 <!-- ================= FAQ ================= -->
 
 <section class="section faq-section">
@@ -2160,6 +2900,7 @@ panel.style.maxHeight=panel.scrollHeight+"px";
 }
 
 </script>
+  
   <!-- ================= CONTACT ================= -->
 
 <section id="contact" class="section contact-section">
@@ -2453,6 +3194,49 @@ document.getElementById("loanSuggestion").innerHTML="Please contact HBML Capital
 }
 
 }
+
+let testimonials=document.querySelectorAll(".testimonial");
+
+let currentTestimonial=0;
+
+function showTestimonial(){
+
+testimonials.forEach((item)=>{
+
+item.classList.remove("active");
+
+});
+
+currentTestimonial++;
+
+if(currentTestimonial>=testimonials.length){
+
+currentTestimonial=0;
+
+}
+
+testimonials[currentTestimonial].classList.add("active");
+
+}
+
+setInterval(showTestimonial,4000);
+
+
+
+const faq=document.querySelectorAll(".faq-question");
+
+faq.forEach(item=>{
+
+item.addEventListener("click",function(){
+
+const answer=this.nextElementSibling;
+
+answer.classList.toggle("show");
+
+});
+
+});
+
 
 
 </script>
