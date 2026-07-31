@@ -3047,6 +3047,25 @@ panel.style.maxHeight=panel.scrollHeight+"px";
 });
 
 }
+  const counters = document.querySelectorAll(".counter");
+
+counters.forEach(counter => {
+    const target = Number(counter.dataset.target);
+    let count = 0;
+
+    const update = () => {
+        count += Math.ceil(target / 100);
+
+        if (count >= target) {
+            counter.innerText = target;
+        } else {
+            counter.innerText = count;
+            requestAnimationFrame(update);
+        }
+    };
+
+    update();
+});
 
 </script>
 
