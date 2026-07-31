@@ -805,7 +805,110 @@ border:1px solid #ccc;
 border-radius:8px;
 font-size:16px;
 }
+  
+.loan-products{
 
+padding:90px 0;
+
+background:#ffffff;
+
+}
+
+.loan-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+gap:30px;
+
+margin-top:50px;
+
+}
+
+.loan-card{
+
+background:#fff;
+
+padding:35px;
+
+border-radius:18px;
+
+text-align:center;
+
+box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+transition:.4s;
+
+border-bottom:5px solid #FFD700;
+
+}
+
+.loan-card:hover{
+
+transform:translateY(-12px);
+
+box-shadow:0 18px 40px rgba(0,0,0,.18);
+
+}
+
+.loan-card i{
+
+font-size:60px;
+
+color:#0A1F44;
+
+margin-bottom:20px;
+
+}
+
+.loan-card h3{
+
+font-size:26px;
+
+color:#0A1F44;
+
+margin-bottom:15px;
+
+}
+
+.loan-card p{
+
+line-height:1.8;
+
+color:#666;
+
+margin-bottom:25px;
+
+}
+
+.loan-btn{
+
+display:inline-block;
+
+padding:12px 30px;
+
+background:#FFD700;
+
+color:#0A1F44;
+
+text-decoration:none;
+
+border-radius:30px;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.loan-btn:hover{
+
+background:#0A1F44;
+
+color:#fff;
+
+}
 </style>
 
 </head>
@@ -1341,7 +1444,122 @@ Check Eligibility
 </div>
 
 </section>
+  
+<!-- ================= LOAN PRODUCTS ================= -->
 
+<section class="loan-products" id="loanproducts">
+
+<div class="container">
+
+<h2 class="section-title">Our Loan Products</h2>
+
+<p class="section-subtitle">
+Choose the financial solution that best fits your requirements.
+</p>
+
+<div class="loan-grid">
+
+<div class="loan-card">
+
+<i class="fas fa-briefcase"></i>
+
+<h3>Business Loan</h3>
+
+<p>
+Finance to start, expand or manage your business with flexible repayment options.
+</p>
+
+<a href="#apply" class="loan-btn">
+Apply Now
+</a>
+
+</div>
+
+<div class="loan-card">
+
+<i class="fas fa-user"></i>
+
+<h3>Personal Loan</h3>
+
+<p>
+Quick financial assistance for education, medical, travel and personal needs.
+</p>
+
+<a href="#apply" class="loan-btn">
+Apply Now
+</a>
+
+</div>
+
+<div class="loan-card">
+
+<i class="fas fa-coins"></i>
+
+<h3>Gold Loan</h3>
+
+<p>
+Get instant funds against your gold with a transparent valuation process.
+</p>
+
+<a href="#apply" class="loan-btn">
+Apply Now
+</a>
+
+</div>
+
+<div class="loan-card">
+
+<i class="fas fa-home"></i>
+
+<h3>Mortgage Loan</h3>
+
+<p>
+Loan against residential or commercial property with competitive repayment options.
+</p>
+
+<a href="#apply" class="loan-btn">
+Apply Now
+</a>
+
+</div>
+
+<div class="loan-card">
+
+<i class="fas fa-car"></i>
+
+<h3>Vehicle Loan</h3>
+
+<p>
+Finance for two-wheelers, four-wheelers and commercial vehicles.
+</p>
+
+<a href="#apply" class="loan-btn">
+Apply Now
+</a>
+
+</div>
+
+<div class="loan-card">
+
+<i class="fas fa-users"></i>
+
+<h3>Group Loan</h3>
+
+<p>
+Financial support for eligible self-help groups and community-based lending programs.
+</p>
+
+<a href="#apply" class="loan-btn">
+Apply Now
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
 <!-- LOAN PROCESS -->
 
 <section class="section">
