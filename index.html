@@ -694,6 +694,94 @@ justify-content:center;
 }
 
 }
+  .achievement-section{
+padding:90px 0;
+background:linear-gradient(135deg,#0A1F44,#1E3C72);
+color:#fff;
+}
+
+.achievement-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+margin-top:50px;
+}
+
+.achievement-card{
+background:rgba(255,255,255,.08);
+padding:35px 20px;
+border-radius:15px;
+text-align:center;
+backdrop-filter:blur(8px);
+transition:.3s;
+}
+
+.achievement-card:hover{
+transform:translateY(-10px);
+background:rgba(255,255,255,.15);
+}
+
+.achievement-card i{
+font-size:48px;
+color:#FFD700;
+margin-bottom:20px;
+}
+
+.achievement-card h2{
+font-size:42px;
+margin-bottom:10px;
+color:#fff;
+}
+
+.achievement-card h4{
+font-weight:500;
+}
+  /* WHY CHOOSE */
+
+.whychoose{
+padding:90px 0;
+background:#ffffff;
+}
+
+.choose-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+margin-top:50px;
+}
+
+.choose-card{
+background:#fff;
+padding:35px;
+text-align:center;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+transition:.4s;
+border-top:5px solid #FFD700;
+}
+
+.choose-card:hover{
+transform:translateY(-10px);
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.choose-card i{
+font-size:55px;
+color:#0A1F44;
+margin-bottom:20px;
+}
+
+.choose-card h3{
+color:#0A1F44;
+margin-bottom:15px;
+font-size:24px;
+}
+
+.choose-card p{
+color:#666;
+line-height:1.8;
+font-size:16px;
+}
 
 </style>
 
@@ -933,6 +1021,142 @@ Integrity, Transparency, Customer Trust, Professional Excellence, Innovation, an
 
 </p>
 
+</div>
+
+</div>
+
+</div>
+
+</section>
+  <!-- ================= ACHIEVEMENTS ================= -->
+
+<section class="achievement-section">
+
+<div class="container">
+
+<h2 class="section-title">HBML Capital Achievements</h2>
+
+<p class="section-subtitle">
+
+Dedicated to delivering reliable financial solutions with customer trust.
+
+</p>
+
+<div class="achievement-grid">
+
+<div class="achievement-card">
+
+<i class="fas fa-users"></i>
+
+<h2 class="counter" data-target="5000">0</h2>
+
+<h4>Happy Customers</h4>
+
+</div>
+
+<div class="achievement-card">
+
+<i class="fas fa-file-signature"></i>
+
+<h2 class="counter" data-target="3500">0</h2>
+
+<h4>Loan Applications</h4>
+
+</div>
+
+<div class="achievement-card">
+
+<i class="fas fa-hand-holding-usd"></i>
+
+<h2 class="counter" data-target="2500">0</h2>
+
+<h4>Loans Processed</h4>
+
+</div>
+
+<div class="achievement-card">
+
+<i class="fas fa-award"></i>
+
+<h2 class="counter" data-target="99">0</h2>
+
+<h4>Customer Satisfaction %</h4>
+
+</div>
+
+<div class="achievement-card">
+
+<i class="fas fa-user-tie"></i>
+
+<h2 class="counter" data-target="25">0</h2>
+
+<h4>Professional Advisors</h4>
+
+</div>
+
+<div class="achievement-card">
+
+<i class="fas fa-map-marker-alt"></i>
+
+<h2 class="counter" data-target="10">0</h2>
+
+<h4>Service Locations</h4>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+  <!-- ================= WHY CHOOSE US ================= -->
+
+<section class="whychoose">
+
+<div class="container">
+
+<h2 class="section-title">Why Choose HBML Capital?</h2>
+
+<p class="section-subtitle">
+Your Trusted Partner for Smart Financial Solutions
+</p>
+
+<div class="choose-grid">
+
+<div class="choose-card">
+<i class="fas fa-bolt"></i>
+<h3>Quick Processing</h3>
+<p>Fast verification and efficient loan processing to save your valuable time.</p>
+</div>
+
+<div class="choose-card">
+<i class="fas fa-shield-alt"></i>
+<h3>Secure Documentation</h3>
+<p>Your documents and personal information are handled with care and confidentiality.</p>
+</div>
+
+<div class="choose-card">
+<i class="fas fa-hand-holding-usd"></i>
+<h3>Flexible EMI</h3>
+<p>Convenient repayment plans designed to suit different financial situations.</p>
+</div>
+
+<div class="choose-card">
+<i class="fas fa-user-check"></i>
+<h3>Professional Guidance</h3>
+<p>Experienced staff help customers understand the process from application to disbursement.</p>
+</div>
+
+<div class="choose-card">
+<i class="fas fa-headset"></i>
+<h3>Customer Support</h3>
+<p>Dedicated support team available to answer your questions and provide assistance.</p>
+</div>
+
+<div class="choose-card">
+<i class="fas fa-handshake"></i>
+<h3>Transparent Process</h3>
+<p>Clear communication about documentation, processing, and repayment throughout the loan journey.</p>
 </div>
 
 </div>
@@ -1637,6 +1861,38 @@ behavior:'smooth'
 });
 
 }
+  
+
+const counters=document.querySelectorAll('.counter');
+
+counters.forEach(counter=>{
+
+const updateCounter=()=>{
+
+const target=+counter.getAttribute('data-target');
+
+const count=+counter.innerText;
+
+const increment=target/100;
+
+if(count<target){
+
+counter.innerText=Math.ceil(count+increment);
+
+setTimeout(updateCounter,20);
+
+}else{
+
+counter.innerText=target;
+
+}
+
+}
+
+updateCounter();
+
+});
+
 
 </script>
 
