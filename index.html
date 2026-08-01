@@ -2645,75 +2645,38 @@ Calculate EMI
 
 </section>
 
-<!-- ================= APPLICATION FORM ================= -->
-
-<section id="apply" class="section apply-section">
-
-<div class="container">
-
-<h2 class="section-title">Apply For Loan</h2>
-
-<p class="section-subtitle">
-Fill the application and our executive will contact you shortly.
-</p>
-
 <form id="loanForm">
 
-<input
-type="text"
-placeholder="Full Name"
-required>
+<input type="text" id="name" placeholder="Full Name" required>
 
-<input
-type="tel"
-placeholder="Mobile Number"
-required>
+<input type="tel" id="mobile" placeholder="Mobile Number" required>
 
-<input
-type="email"
-placeholder="Email Address">
+<input type="email" id="email" placeholder="Email Address">
 
-<select required>
-
+<select id="loanType" required>
 <option value="">Select Loan Type</option>
-
 <option>Business Loan</option>
-
 <option>Personal Loan</option>
-
 <option>Gold Loan</option>
-
 <option>Mortgage Loan</option>
-
 <option>Vehicle Loan</option>
-
 <option>Group Loan</option>
-
 </select>
 
-<input
-type="number"
-placeholder="Required Loan Amount">
+<input type="number" id="loanAmountField" placeholder="Required Loan Amount">
 
-<textarea
-rows="5"
-placeholder="Address"></textarea>
+<textarea id="address" rows="5" placeholder="Address"></textarea>
 
-<button
-type="submit"
-class="submit-btn">
-
+<button type="submit" class="submit-btn">
 Submit Application
-
 </button>
 
 </form>
 
-</div>
-
 </section>
 
 <script>
+  
 
 function calculateEMI(){
 
@@ -3227,6 +3190,8 @@ counters.forEach(counter => {
   window.addEventListener("load", function () {
     document.getElementById("preloader").style.display = "none";
 });
+  <script type="module" src="firebase-config.js"></script>
+<script type="module" src="loan-application.js"></script>
 </script>
 
 </body>
