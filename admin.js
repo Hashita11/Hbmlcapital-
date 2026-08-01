@@ -1,5 +1,3 @@
-<script type="module" src="firebase-config.js"></script>
-<script type="module" src="admin.js"></script>
 import { db } from "./firebase-config.js";
 
 import {
