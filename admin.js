@@ -1,5 +1,4 @@
 import { db } from "./firebase-config.js";
-
 import {
   collection,
   onSnapshot,
@@ -8,22 +7,21 @@ import {
   deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const table = document.getElementById("loanTable");
+// Target the table body to avoid destroying table headers
+const tableBody = document.querySelector("#loanTable tbody") || document.getElementById("loanTable");
 
 onSnapshot(collection(db, "loan_applications"), (snapshot) => {
-
-    table.innerHTML = "";
+    tableBody.innerHTML = "";
 
     snapshot.forEach((item) => {
-
         const data = item.data();
 
-        table.innerHTML += `
+        tableBody.innerHTML += `
         <tr>
-            <td>${data.name}</td>
-            <td>${data.mobile}</td>
-            <td>${data.loanType}</td>
-            <td>₹${data.loanAmount}</td>
+            <td>${data.name || "N/A"}</td>
+            <td>${data.mobile || "N/A"}</td>
+            <td>${data.loanType || "N/A"}</td>
+            <td>₹${data.loanAmount || 0}</td>
             <td>${data.status || "Pending"}</td>
             <td>
                 <button class="approve" onclick="approveLoan('${item.id}')">Approve</button>
@@ -35,19 +33,31 @@ onSnapshot(collection(db, "loan_applications"), (snapshot) => {
 });
 
 window.approveLoan = async (id) => {
-    await updateDoc(doc(db, "loan_applications", id), {
-        status: "Approved"
-    });
+    try {
+        await updateDoc(doc(db, "loan_applications", id), {
+            status: "Approved"
+        });
+    } catch (error) {
+        console.error("Error approving loan: ", error);
+    }
 };
 
 window.rejectLoan = async (id) => {
-    await updateDoc(doc(db, "loan_applications", id), {
-        status: "Rejected"
-    });
+    try {
+        await updateDoc(doc(db, "loan_applications", id), {
+            status: "Rejected"
+        });
+    } catch (error) {
+        console.error("Error rejecting loan: ", error);
+    }
 };
 
 window.deleteLoan = async (id) => {
     if (confirm("Delete this application?")) {
-        await deleteDoc(doc(db, "loan_applications", id));
+        try {
+            await deleteDoc(doc(db, "loan_applications", id));
+        } catch (error) {
+            console.error("Error deleting loan: ", error);
+        }
     }
 };
