@@ -7,7 +7,6 @@ import {
   deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// Target the table body to avoid destroying table headers
 const tableBody = document.querySelector("#loanTable tbody") || document.getElementById("loanTable");
 
 onSnapshot(collection(db, "loan_applications"), (snapshot) => {
@@ -24,9 +23,9 @@ onSnapshot(collection(db, "loan_applications"), (snapshot) => {
             <td>₹${data.loanAmount || 0}</td>
             <td>${data.status || "Pending"}</td>
             <td>
-                <button class="approve" onclick="approveLoan('${item.id}')">Approve</button>
-                <button class="reject" onclick="rejectLoan('${item.id}')">Reject</button>
-                <button onclick="deleteLoan('${item.id}')">Delete</button>
+                <button type="button" class="approve" onclick="window.approveLoan('${item.id}')">Approve</button>
+                <button type="button" class="reject" onclick="window.rejectLoan('${item.id}')">Reject</button>
+                <button type="button" onclick="window.deleteLoan('${item.id}')">Delete</button>
             </td>
         </tr>`;
     });
@@ -34,30 +33,35 @@ onSnapshot(collection(db, "loan_applications"), (snapshot) => {
 
 window.approveLoan = async (id) => {
     try {
-        await updateDoc(doc(db, "loan_applications", id), {
-            status: "Approved"
-        });
+        const docRef = doc(db, "loan_applications", id);
+        await updateDoc(docRef, { status: "Approved" });
+        console.log("Loan approved successfully");
     } catch (error) {
-        console.error("Error approving loan: ", error);
+        console.error("Error approving loan:", error);
+        alert("Failed to approve: " + error.message);
     }
 };
 
 window.rejectLoan = async (id) => {
     try {
-        await updateDoc(doc(db, "loan_applications", id), {
-            status: "Rejected"
-        });
+        const docRef = doc(db, "loan_applications", id);
+        await updateDoc(docRef, { status: "Rejected" });
+        console.log("Loan rejected successfully");
     } catch (error) {
-        console.error("Error rejecting loan: ", error);
+        console.error("Error rejecting loan:", error);
+        alert("Failed to reject: " + error.message);
     }
 };
 
 window.deleteLoan = async (id) => {
     if (confirm("Delete this application?")) {
         try {
-            await deleteDoc(doc(db, "loan_applications", id));
+            const docRef = doc(db, "loan_applications", id);
+            await deleteDoc(docRef);
+            console.log("Loan deleted successfully");
         } catch (error) {
-            console.error("Error deleting loan: ", error);
+            console.error("Error deleting loan:", error);
+            alert("Failed to delete: " + error.message);
         }
     }
 };
