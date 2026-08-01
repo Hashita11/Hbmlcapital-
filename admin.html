@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HBML Admin Dashboard</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f7fc;
+margin:20px;
+}
+
+h2{
+text-align:center;
+color:#0b2c5f;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+background:#fff;
+}
+
+th{
+background:#0b2c5f;
+color:white;
+padding:12px;
+}
+
+td{
+padding:10px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+tr:nth-child(even){
+background:#f9f9f9;
+}
+
+button{
+padding:6px 12px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.approve{
+background:green;
+color:white;
+}
+
+.reject{
+background:red;
+color:white;
+}
+</style>
+
+</head>
+<body>
+
+<h2>HBML Loan Applications</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Mobile</th>
+<th>Loan Type</th>
+<th>Amount</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="loanTable"></tbody>
+
+</table>
+
+<script type="module" src="admin.js"></script>
+
+</body>
+</html>
