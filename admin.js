@@ -9,6 +9,7 @@ import {
 
 const tableBody = document.querySelector("#loanTable tbody") || document.getElementById("loanTable");
 
+// 1. Render data and attach IDs to data attributes instead of inline JS
 onSnapshot(collection(db, "loan_applications"), (snapshot) => {
     tableBody.innerHTML = "";
 
@@ -23,45 +24,40 @@ onSnapshot(collection(db, "loan_applications"), (snapshot) => {
             <td>₹${data.loanAmount || 0}</td>
             <td>${data.status || "Pending"}</td>
             <td>
-                <button type="button" class="approve" onclick="window.approveLoan('${item.id}')">Approve</button>
-                <button type="button" class="reject" onclick="window.rejectLoan('${item.id}')">Reject</button>
-                <button type="button" onclick="window.deleteLoan('${item.id}')">Delete</button>
+                <button type="button" class="approve-btn" data-id="${item.id}">Approve</button>
+                <button type="button" class="reject-btn" data-id="${item.id}">Reject</button>
+                <button type="button" class="delete-btn" data-id="${item.id}">Delete</button>
             </td>
         </tr>`;
     });
 });
 
-window.approveLoan = async (id) => {
+// 2. Use Event Delegation to handle clicks safely (bypasses scope issues)
+tableBody.addEventListener("click", async (e) => {
+    const target = e.target;
+    const id = target.getAttribute("data-id");
+
+    if (!id) return; // Exit if clicked element isn't one of our buttons
+
     try {
         const docRef = doc(db, "loan_applications", id);
-        await updateDoc(docRef, { status: "Approved" });
-        console.log("Loan approved successfully");
-    } catch (error) {
-        console.error("Error approving loan:", error);
-        alert("Failed to approve: " + error.message);
-    }
-};
 
-window.rejectLoan = async (id) => {
-    try {
-        const docRef = doc(db, "loan_applications", id);
-        await updateDoc(docRef, { status: "Rejected" });
-        console.log("Loan rejected successfully");
-    } catch (error) {
-        console.error("Error rejecting loan:", error);
-        alert("Failed to reject: " + error.message);
-    }
-};
-
-window.deleteLoan = async (id) => {
-    if (confirm("Delete this application?")) {
-        try {
-            const docRef = doc(db, "loan_applications", id);
-            await deleteDoc(docRef);
-            console.log("Loan deleted successfully");
-        } catch (error) {
-            console.error("Error deleting loan:", error);
-            alert("Failed to delete: " + error.message);
+        if (target.classList.contains("approve-btn")) {
+            await updateDoc(docRef, { status: "Approved" });
+            console.log("Approved:", id);
+        } 
+        else if (target.classList.contains("reject-btn")) {
+            await updateDoc(docRef, { status: "Rejected" });
+            console.log("Rejected:", id);
+        } 
+        else if (target.classList.contains("delete-btn")) {
+            if (confirm("Delete this application?")) {
+                await deleteDoc(docRef);
+                console.log("Deleted:", id);
+            }
         }
+    } catch (error) {
+        console.error("Operation failed: ", error);
+        alert("Action failed! Check Firestore Rules or Console. Error: " + error.message);
     }
-};
+});
