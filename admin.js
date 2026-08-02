@@ -9,7 +9,7 @@ import {
 
 const tableBody = document.querySelector("#loanTable tbody") || document.getElementById("loanTable");
 
-// MATCHED COLLECTION NAME TO FIREBASE CONSOLE: "loan_approvals"
+// Listening to the correct collection from your database screenshot
 onSnapshot(collection(db, "loan_approvals"), (snapshot) => {
     tableBody.innerHTML = "";
 
@@ -21,7 +21,6 @@ onSnapshot(collection(db, "loan_approvals"), (snapshot) => {
     snapshot.forEach((item) => {
         const data = item.data();
 
-        // Note: Checking fields matching your screenshot (customerName instead of name, etc.)
         tableBody.innerHTML += `
         <tr>
             <td>${data.customerName || data.name || "N/A"}</td>
@@ -38,6 +37,7 @@ onSnapshot(collection(db, "loan_approvals"), (snapshot) => {
     });
 });
 
+// Event listener to handle Approve, Reject, and Delete clicks
 tableBody.addEventListener("click", async (e) => {
     const target = e.target;
     const id = target.getAttribute("data-id");
@@ -45,7 +45,6 @@ tableBody.addEventListener("click", async (e) => {
     if (!id) return;
 
     try {
-        // MATCHED COLLECTION NAME TO FIREBASE CONSOLE: "loan_approvals"
         const docRef = doc(db, "loan_approvals", id);
 
         if (target.classList.contains("approve-btn")) {
