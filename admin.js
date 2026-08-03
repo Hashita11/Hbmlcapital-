@@ -1,4 +1,5 @@
 import { db } from "./firebase-config.js";
+
 import {
   collection,
   onSnapshot,
@@ -7,59 +8,84 @@ import {
   deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const tableBody = document.querySelector("#loanTable tbody") || document.getElementById("loanTable");
+const tableBody = document.getElementById("loanTable");
 
-// Listening to the correct collection from your database screenshot
-onSnapshot(collection(db, "loan_approvals"), (snapshot) => {
+// Read loan applications
+onSnapshot(collection(db, "loan_applications"), (snapshot) => {
+
     tableBody.innerHTML = "";
 
     if (snapshot.empty) {
-        tableBody.innerHTML = `<tr><td colspan="6" style="text-align: center;">No loan applications found.</td></tr>`;
+        tableBody.innerHTML = `
+        <tr>
+            <td colspan="6">No Loan Applications Found</td>
+        </tr>`;
         return;
     }
 
     snapshot.forEach((item) => {
+
         const data = item.data();
 
         tableBody.innerHTML += `
         <tr>
-            <td>${data.customerName || data.name || "N/A"}</td>
-            <td>${data.mobile || "N/A"}</td>
-            <td>${data.loanType || "Personal Loan"}</td>
-            <td>₹${data.loanAmount || 0}</td>
+            <td>${data.name || ""}</td>
+            <td>${data.mobile || ""}</td>
+            <td>${data.loanType || ""}</td>
+            <td>₹${data.loanAmount || ""}</td>
             <td>${data.status || "Pending"}</td>
             <td>
-                <button type="button" class="approve-btn" data-id="${item.id}">Approve</button>
-                <button type="button" class="reject-btn" data-id="${item.id}">Reject</button>
-                <button type="button" class="delete-btn" data-id="${item.id}">Delete</button>
+                <button class="approve-btn" data-id="${item.id}">Approve</button>
+                <button class="reject-btn" data-id="${item.id}">Reject</button>
+                <button class="delete-btn" data-id="${item.id}">Delete</button>
             </td>
         </tr>`;
     });
+
 });
 
-// Event listener to handle Approve, Reject, and Delete clicks
+// Button Click Events
 tableBody.addEventListener("click", async (e) => {
-    const target = e.target;
-    const id = target.getAttribute("data-id");
+
+    const id = e.target.dataset.id;
 
     if (!id) return;
 
     try {
-        const docRef = doc(db, "loan_approvals", id);
 
-        if (target.classList.contains("approve-btn")) {
-            await updateDoc(docRef, { status: "Approved" });
-        } 
-        else if (target.classList.contains("reject-btn")) {
-            await updateDoc(docRef, { status: "Rejected" });
-        } 
-        else if (target.classList.contains("delete-btn")) {
-            if (confirm("Delete this application?")) {
-                await deleteDoc(docRef);
-            }
+        const docRef = doc(db, "loan_applications", id);
+
+        if (e.target.classList.contains("approve-btn")) {
+
+            await updateDoc(docRef, {
+                status: "Approved"
+            });
+
         }
-    } catch (error) {
-        console.error("Operation failed: ", error);
-        alert("Action failed: " + error.message);
+
+        if (e.target.classList.contains("reject-btn")) {
+
+            await updateDoc(docRef, {
+                status: "Rejected"
+            });
+
+        }
+
+        if (e.target.classList.contains("delete-btn")) {
+
+            if (confirm("Delete this application?")) {
+
+                await deleteDoc(docRef);
+
+            }
+
+        }
+
+    } catch (err) {
+
+        console.error(err);
+        alert(err.message);
+
     }
+
 });
