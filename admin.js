@@ -10,34 +10,49 @@ import {
 
 const tableBody = document.getElementById("loanTable");
 
-// Read loan applications
+// =======================
+// Load Loan Applications
+// =======================
 onSnapshot(collection(db, "loan_applications"), (snapshot) => {
 
     tableBody.innerHTML = "";
 
+    let total = 0;
+    let pending = 0;
+    let approved = 0;
+    let rejected = 0;
+
     if (snapshot.empty) {
+
         tableBody.innerHTML = `
         <tr>
-            <td colspan="6">No Loan Applications Found</td>
+            <td colspan="6" style="text-align:center;">
+                No Loan Applications Found
+            </td>
         </tr>`;
+
+        document.getElementById("totalApps").innerText = 0;
+        document.getElementById("pendingApps").innerText = 0;
+        document.getElementById("approvedApps").innerText = 0;
+        document.getElementById("rejectedApps").innerText = 0;
+
         return;
     }
-let total = 0;
-let pending = 0;
-let approved = 0;
-let rejected = 0;
+
     snapshot.forEach((item) => {
 
         const data = item.data();
-total++;
 
-if(data.status==="Approved"){
-approved++;
-}else if(data.status==="Rejected"){
-rejected++;
-}else{
-pending++;
-}
+        total++;
+
+        if (data.status === "Approved") {
+            approved++;
+        } else if (data.status === "Rejected") {
+            rejected++;
+        } else {
+            pending++;
+        }
+
         tableBody.innerHTML += `
         <tr>
             <td>${data.name || ""}</td>
@@ -47,29 +62,35 @@ pending++;
             <td>${data.status || "Pending"}</td>
             <td>
                 <button class="approve-btn" data-id="${item.id}">Approve</button>
+
                 <button class="reject-btn" data-id="${item.id}">Reject</button>
+
                 <button class="delete-btn" data-id="${item.id}">Delete</button>
             </td>
         </tr>`;
     });
-// Update dashboard cards
-document.getElementById("totalApps").innerText = total;
-document.getElementById("pendingApps").innerText = pending;
-document.getElementById("approvedApps").innerText = approved;
-document.getElementById("rejectedApps").innerText = rejected;
-});
- 
 
-// Button Click Events
+    // Dashboard Cards
+    document.getElementById("totalApps").innerText = total;
+    document.getElementById("pendingApps").innerText = pending;
+    document.getElementById("approvedApps").innerText = approved;
+    document.getElementById("rejectedApps").innerText = rejected;
+
+});
+
+
+// =======================
+// Approve / Reject / Delete
+// =======================
 tableBody.addEventListener("click", async (e) => {
 
     const id = e.target.dataset.id;
 
     if (!id) return;
 
-    try {
+    const docRef = doc(db, "loan_applications", id);
 
-        const docRef = doc(db, "loan_applications", id);
+    try {
 
         if (e.target.classList.contains("approve-btn")) {
 
@@ -99,23 +120,59 @@ tableBody.addEventListener("click", async (e) => {
 
     } catch (err) {
 
-        console.error(err);
         alert(err.message);
+        console.error(err);
 
     }
 
 });
-document.getElementById("searchBox").addEventListener("keyup", function(){
 
-const value = this.value.toLowerCase();
 
-document.querySelectorAll("#loanTable tr").forEach(row=>{
+// =======================
+// Search
+// =======================
+document.getElementById("searchBox").addEventListener("keyup", function () {
 
-row.style.display =
-row.innerText.toLowerCase().includes(value)
-? ""
-: "none";
+    const value = this.value.toLowerCase();
+
+    document.querySelectorAll("#loanTable tr").forEach(row => {
+
+        const name = row.cells[0]?.innerText.toLowerCase() || "";
+        const mobile = row.cells[1]?.innerText.toLowerCase() || "";
+
+        if (name.includes(value) || mobile.includes(value)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+
+    });
 
 });
 
-});
+
+// =======================
+// Filter Buttons
+// =======================
+window.filterStatus = function(status){
+
+    const rows = document.querySelectorAll("#loanTable tr");
+
+    rows.forEach(row=>{
+
+        if(status === "All"){
+            row.style.display = "";
+            return;
+        }
+
+        const rowStatus = row.cells[4]?.innerText.trim();
+
+        if(rowStatus === status){
+            row.style.display = "";
+        }else{
+            row.style.display = "none";
+        }
+
+    });
+
+};
