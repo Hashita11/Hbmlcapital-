@@ -394,6 +394,45 @@ tableBody.addEventListener("click", async (e) => {
     }
 
 });
+// =======================================
+// View Complete Customer Profile
+// =======================================
+
+tableBody.addEventListener("click", function(e){
+
+    if(!e.target.classList.contains("view-btn")) return;
+
+    const row = e.target.closest("tr");
+
+    document.getElementById("dName").innerText = row.cells[0].innerText;
+
+    document.getElementById("dMobile").innerText = row.cells[1].innerText;
+
+    document.getElementById("dLoan").innerText = row.cells[2].innerText;
+
+    document.getElementById("dAmount").innerText = row.cells[3].innerText;
+
+    document.getElementById("dStatus").innerText = row.cells[4].innerText;
+
+    // Extra fields (shown if available)
+    document.getElementById("dEmail").innerText =
+        row.dataset.email || "Not Available";
+
+    document.getElementById("dAddress").innerText =
+        row.dataset.address || "Not Available";
+
+    document.getElementById("dOccupation").innerText =
+        row.dataset.occupation || "Not Available";
+
+    document.getElementById("dIncome").innerText =
+        row.dataset.income || "Not Available";
+
+    document.getElementById("dPurpose").innerText =
+        row.dataset.purpose || "Not Available";
+
+    document.getElementById("customerModal").style.display = "block";
+
+});
 // ===================================
 // Live Search
 // ===================================
@@ -761,3 +800,20 @@ Status : ${row.cells[4].innerText}
     alert(details);
 
 });
+// Close Popup
+
+document.getElementById("closeModal").onclick=function(){
+
+document.getElementById("customerModal").style.display="none";
+
+};
+
+window.onclick=function(e){
+
+if(e.target==document.getElementById("customerModal")){
+
+document.getElementById("customerModal").style.display="none";
+
+}
+
+};
