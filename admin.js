@@ -52,12 +52,13 @@ pending++;
             </td>
         </tr>`;
     });
-
-});
+// Update dashboard cards
 document.getElementById("totalApps").innerText = total;
 document.getElementById("pendingApps").innerText = pending;
 document.getElementById("approvedApps").innerText = approved;
 document.getElementById("rejectedApps").innerText = rejected;
+});
+ 
 
 // Button Click Events
 tableBody.addEventListener("click", async (e) => {
