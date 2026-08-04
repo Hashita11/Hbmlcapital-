@@ -735,3 +735,29 @@ window.currentDate = function(){
 // ===================================
 
 console.log("HBML Admin Dashboard Version 1.0");
+
+// ===========================
+// View Full Application
+// ===========================
+
+tableBody.addEventListener("click", function(e){
+
+    if(!e.target.classList.contains("view-btn")) return;
+
+    const row = e.target.closest("tr");
+
+    const details = `
+Name : ${row.cells[0].innerText}
+
+Mobile : ${row.cells[1].innerText}
+
+Loan Type : ${row.cells[2].innerText}
+
+Loan Amount : ${row.cells[3].innerText}
+
+Status : ${row.cells[4].innerText}
+`;
+
+    alert(details);
+
+});
