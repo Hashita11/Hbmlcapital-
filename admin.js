@@ -398,39 +398,50 @@ tableBody.addEventListener("click", async (e) => {
 // View Complete Customer Profile
 // =======================================
 
-tableBody.addEventListener("click", function(e){
+import { getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+tableBody.addEventListener("click", async function(e){
 
     if(!e.target.classList.contains("view-btn")) return;
 
-    const row = e.target.closest("tr");
+    const id = e.target.dataset.id;
 
-    document.getElementById("dName").innerText = row.cells[0].innerText;
+    try{
 
-    document.getElementById("dMobile").innerText = row.cells[1].innerText;
+        const docRef = doc(db,"loan_applications",id);
 
-    document.getElementById("dLoan").innerText = row.cells[2].innerText;
+        const docSnap = await getDoc(docRef);
 
-    document.getElementById("dAmount").innerText = row.cells[3].innerText;
+        if(!docSnap.exists()){
 
-    document.getElementById("dStatus").innerText = row.cells[4].innerText;
+            alert("Application not found.");
 
-    // Extra fields (shown if available)
-    document.getElementById("dEmail").innerText =
-        row.dataset.email || "Not Available";
+            return;
 
-    document.getElementById("dAddress").innerText =
-        row.dataset.address || "Not Available";
+        }
 
-    document.getElementById("dOccupation").innerText =
-        row.dataset.occupation || "Not Available";
+        const data = docSnap.data();
 
-    document.getElementById("dIncome").innerText =
-        row.dataset.income || "Not Available";
+        document.getElementById("dName").innerText = data.name || "";
+        document.getElementById("dMobile").innerText = data.mobile || "";
+        document.getElementById("dEmail").innerText = data.email || "";
+        document.getElementById("dAddress").innerText = data.address || "";
+        document.getElementById("dLoan").innerText = data.loanType || "";
+        document.getElementById("dAmount").innerText = "₹" + (data.loanAmount || "");
+        document.getElementById("dOccupation").innerText = data.occupation || "";
+        document.getElementById("dIncome").innerText = data.monthlyIncome || "";
+        document.getElementById("dPurpose").innerText = data.loanPurpose || "";
+        document.getElementById("dStatus").innerText = data.status || "Pending";
 
-    document.getElementById("dPurpose").innerText =
-        row.dataset.purpose || "Not Available";
+        document.getElementById("customerModal").style.display = "block";
 
-    document.getElementById("customerModal").style.display = "block";
+    }catch(error){
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
 
 });
 // ===================================
