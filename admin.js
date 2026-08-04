@@ -335,3 +335,403 @@ window.printApplications=function(){
     window.print();
 
 };
+// ================================
+// Approve / Reject / Delete Events
+// ================================
+
+tableBody.addEventListener("click", async (e) => {
+
+    const id = e.target.dataset.id;
+
+    if (!id) return;
+
+    const docRef = doc(db, "loan_applications", id);
+
+    try {
+
+        // Approve
+        if (e.target.classList.contains("approve-btn")) {
+
+            await updateDoc(docRef, {
+                status: "Approved",
+                approvedDate: new Date().toLocaleString()
+            });
+
+            alert("Loan Approved Successfully");
+
+        }
+
+        // Reject
+        if (e.target.classList.contains("reject-btn")) {
+
+            await updateDoc(docRef, {
+                status: "Rejected",
+                rejectedDate: new Date().toLocaleString()
+            });
+
+            alert("Loan Rejected");
+
+        }
+
+        // Delete
+        if (e.target.classList.contains("delete-btn")) {
+
+            if (confirm("Delete this application permanently?")) {
+
+                await deleteDoc(docRef);
+
+                alert("Application Deleted");
+
+            }
+
+        }
+
+    } catch (err) {
+
+        console.error(err);
+        alert(err.message);
+
+    }
+
+});
+// ===================================
+// Live Search
+// ===================================
+const searchBox = document.getElementById("searchBox");
+
+if (searchBox) {
+
+    searchBox.addEventListener("keyup", function () {
+
+        const value = this.value.toLowerCase();
+
+        document.querySelectorAll("#loanTable tr").forEach(row => {
+
+            const name = row.cells[0]?.innerText.toLowerCase() || "";
+            const mobile = row.cells[1]?.innerText.toLowerCase() || "";
+            const loan = row.cells[2]?.innerText.toLowerCase() || "";
+
+            if (
+                name.includes(value) ||
+                mobile.includes(value) ||
+                loan.includes(value)
+            ) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+
+        });
+
+    });
+
+}
+
+
+// ===================================
+// Filter by Status
+// ===================================
+window.filterStatus = function(status){
+
+    document.querySelectorAll("#loanTable tr").forEach(row=>{
+
+        const rowStatus = row.cells[4]?.innerText.trim();
+
+        if(status === "All"){
+            row.style.display = "";
+        }
+        else if(rowStatus === status){
+            row.style.display = "";
+        }
+        else{
+            row.style.display = "none";
+        }
+
+    });
+
+};
+
+
+// ===================================
+// Auto Refresh Time
+// ===================================
+setInterval(() => {
+
+    const time = document.getElementById("lastUpdated");
+
+    if(time){
+
+        time.innerHTML =
+        "Last Updated : " +
+        new Date().toLocaleTimeString();
+
+    }
+
+},1000);
+
+
+// ===================================
+// Export Table to CSV
+// ===================================
+window.exportCSV = function(){
+
+    let csv = [];
+
+    document.querySelectorAll("table tr").forEach(row=>{
+
+        let cols = row.querySelectorAll("th,td");
+
+        let data=[];
+
+        cols.forEach(col=>{
+
+            data.push(col.innerText);
+
+        });
+
+        csv.push(data.join(","));
+
+    });
+
+    const blob = new Blob([csv.join("\n")],{
+        type:"text/csv"
+    });
+
+    const a=document.createElement("a");
+
+    a.href=URL.createObjectURL(blob);
+
+    a.download="HBML_Loan_Report.csv";
+
+    a.click();
+
+};
+
+
+// ===================================
+// Print Report
+// ===================================
+window.printReport=function(){
+
+    window.print();
+
+};
+// ===================================
+// Sort Loan Amount
+// ===================================
+
+window.sortAmount = function(order){
+
+    let rows = Array.from(document.querySelectorAll("#loanTable tr"));
+
+    rows.sort((a,b)=>{
+
+        let amountA = parseFloat(
+            a.cells[3].innerText.replace(/[₹,]/g,"")
+        ) || 0;
+
+        let amountB = parseFloat(
+            b.cells[3].innerText.replace(/[₹,]/g,"")
+        ) || 0;
+
+        return order==="asc"
+            ? amountA-amountB
+            : amountB-amountA;
+
+    });
+
+    tableBody.innerHTML="";
+
+    rows.forEach(row=>tableBody.appendChild(row));
+
+};
+
+
+// ===================================
+// Today's Applications
+// ===================================
+
+window.showTodayApplications=function(){
+
+    let count=0;
+
+    document.querySelectorAll("#loanTable tr").forEach(row=>{
+
+        const date=row.cells[5]?.innerText || "";
+
+        const today=new Date().toLocaleDateString();
+
+        if(date.includes(today)){
+            count++;
+        }
+
+    });
+
+    alert("Today's Applications : "+count);
+
+};
+
+
+// ===================================
+// Pending Applications Alert
+// ===================================
+
+window.showPending=function(){
+
+    let pending=0;
+
+    document.querySelectorAll("#loanTable tr").forEach(row=>{
+
+        const status=row.cells[4]?.innerText.trim();
+
+        if(status==="Pending"){
+            pending++;
+        }
+
+    });
+
+    alert("Pending Applications : "+pending);
+
+};
+
+
+// ===================================
+// Refresh Dashboard
+// ===================================
+
+window.refreshDashboard=function(){
+
+    location.reload();
+
+};
+
+
+// ===================================
+// Dashboard Welcome Message
+// ===================================
+
+const welcome=document.getElementById("welcome");
+
+if(welcome){
+
+    const hour=new Date().getHours();
+
+    let msg="Welcome";
+
+    if(hour<12){
+        msg="Good Morning";
+    }else if(hour<17){
+        msg="Good Afternoon";
+    }else{
+        msg="Good Evening";
+    }
+
+    welcome.innerHTML=msg+" - HBML Capital Admin";
+
+}
+// ===================================
+// Dashboard Quick Buttons
+// ===================================
+
+window.totalApplications = function () {
+    alert("Total Applications : " + document.getElementById("totalApps").innerText);
+};
+
+window.totalApproved = function () {
+    alert("Approved Loans : " + document.getElementById("approvedApps").innerText);
+};
+
+window.totalRejected = function () {
+    alert("Rejected Loans : " + document.getElementById("rejectedApps").innerText);
+};
+
+window.totalPending = function () {
+    alert("Pending Loans : " + document.getElementById("pendingApps").innerText);
+};
+
+
+// ===================================
+// Dashboard Clock
+// ===================================
+
+setInterval(() => {
+
+    const clock = document.getElementById("clock");
+
+    if (clock) {
+
+        clock.innerHTML = new Date().toLocaleString();
+
+    }
+
+}, 1000);
+
+
+// ===================================
+// Dashboard Footer
+// ===================================
+
+const footer = document.getElementById("footerText");
+
+if (footer) {
+
+    footer.innerHTML =
+    "© 2026 HBML Capital Pvt Ltd. All Rights Reserved.";
+
+}
+// ===================================
+// Loan Summary
+// ===================================
+
+window.loanSummary = function () {
+
+    const total = document.getElementById("totalApps").innerText;
+    const pending = document.getElementById("pendingApps").innerText;
+    const approved = document.getElementById("approvedApps").innerText;
+    const rejected = document.getElementById("rejectedApps").innerText;
+
+    alert(
+`HBML Loan Summary
+
+Total Applications : ${total}
+
+Approved : ${approved}
+
+Pending : ${pending}
+
+Rejected : ${rejected}`
+    );
+
+};
+
+
+// ===================================
+// Scroll to Top
+// ===================================
+
+window.scrollTopPage = function(){
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+};
+
+
+// ===================================
+// Print Current Date
+// ===================================
+
+window.currentDate = function(){
+
+    alert(new Date().toLocaleDateString());
+
+};
+
+
+// ===================================
+// Admin Version
+// ===================================
+
+console.log("HBML Admin Dashboard Version 1.0");
