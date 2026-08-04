@@ -1,178 +1,337 @@
 import { db } from "./firebase-config.js";
 
 import {
-  collection,
-  onSnapshot,
-  doc,
-  updateDoc,
-  deleteDoc
+    collection,
+    onSnapshot,
+    doc,
+    getDoc,
+    updateDoc,
+    deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
 const tableBody = document.getElementById("loanTable");
 
-// =======================
-// Load Loan Applications
-// =======================
-onSnapshot(collection(db, "loan_applications"), (snapshot) => {
+const totalApps = document.getElementById("totalApps");
+const pendingApps = document.getElementById("pendingApps");
+const approvedApps = document.getElementById("approvedApps");
+const rejectedApps = document.getElementById("rejectedApps");
 
-    tableBody.innerHTML = "";
+function updateCards(total, pending, approved, rejected) {
 
-    let total = 0;
-    let pending = 0;
-    let approved = 0;
-    let rejected = 0;
+    totalApps.textContent = total;
+    pendingApps.textContent = pending;
+    approvedApps.textContent = approved;
+    rejectedApps.textContent = rejected;
 
-    if (snapshot.empty) {
+}
 
-        tableBody.innerHTML = `
-        <tr>
-            <td colspan="6" style="text-align:center;">
-                No Loan Applications Found
-            </td>
-        </tr>`;
+function showNoData() {
 
-        document.getElementById("totalApps").innerText = 0;
-        document.getElementById("pendingApps").innerText = 0;
-        document.getElementById("approvedApps").innerText = 0;
-        document.getElementById("rejectedApps").innerText = 0;
+    tableBody.innerHTML = `
+    <tr>
+        <td colspan="6" style="padding:20px;text-align:center;">
+            No Loan Applications Found
+        </td>
+    </tr>`;
 
+    updateCards(0,0,0,0);
+
+}
+
+onSnapshot(collection(db,"loan_applications"),(snapshot)=>{
+
+    tableBody.innerHTML="";
+
+    if(snapshot.empty){
+
+        showNoData();
         return;
+
     }
 
-    snapshot.forEach((item) => {
+    let total=0;
+    let pending=0;
+    let approved=0;
+    let rejected=0;
 
-        const data = item.data();
+    snapshot.forEach((item)=>{
+
+        const data=item.data();
 
         total++;
 
-        if (data.status === "Approved") {
+        if(data.status==="Approved"){
             approved++;
-        } else if (data.status === "Rejected") {
+        }
+        else if(data.status==="Rejected"){
             rejected++;
-        } else {
+        }
+        else{
             pending++;
         }
 
-        tableBody.innerHTML += `
-        <tr>
-            <td>${data.name || ""}</td>
-            <td>${data.mobile || ""}</td>
-            <td>${data.loanType || ""}</td>
-            <td>₹${data.loanAmount || ""}</td>
-            <td>${data.status || "Pending"}</td>
-            <td>
-                <button class="approve-btn" data-id="${item.id}">Approve</button>
+        tableBody.innerHTML+=`
 
-                <button class="reject-btn" data-id="${item.id}">Reject</button>
+<tr>
 
-                <button class="delete-btn" data-id="${item.id}">Delete</button>
-            </td>
-        </tr>`;
+<td>${data.name ?? ""}</td>
+
+<td>${data.mobile ?? ""}</td>
+
+<td>${data.loanType ?? ""}</td>
+
+<td>₹${data.loanAmount ?? ""}</td>
+
+<td>${data.status ?? "Pending"}</td>
+
+<td>
+
+<button class="view-btn" data-id="${item.id}">
+👁 View
+</button>
+
+<button class="approve-btn" data-id="${item.id}">
+✅ Approve
+</button>
+
+<button class="reject-btn" data-id="${item.id}">
+❌ Reject
+</button>
+
+<button class="delete-btn" data-id="${item.id}">
+🗑 Delete
+</button>
+<button onclick="whatsappApplicant('${data.mobile}')">💬</button>
+
+<button onclick="callApplicant('${data.mobile}')">📞</button>
+
+<button onclick="copyRow(this)">📋</button>
+</td>
+</tr>
+
+`;
+
     });
 
-    // Dashboard Cards
-    document.getElementById("totalApps").innerText = total;
-    document.getElementById("pendingApps").innerText = pending;
-    document.getElementById("approvedApps").innerText = approved;
-    document.getElementById("rejectedApps").innerText = rejected;
+    updateCards(total,pending,approved,rejected);
+
+},(error)=>{
+
+    console.error(error);
+
+    tableBody.innerHTML=`
+<tr>
+<td colspan="6" style="color:red;text-align:center;">
+Failed to load data
+</td>
+</tr>`;
 
 });
-
-
-// =======================
-// Approve / Reject / Delete
-// =======================
-tableBody.addEventListener("click", async (e) => {
+tableBody.addEventListener("click", async (e)=>{
 
     const id = e.target.dataset.id;
 
-    if (!id) return;
+    if(!id) return;
 
-    const docRef = doc(db, "loan_applications", id);
+    const docRef = doc(db,"loan_applications",id);
 
-    try {
+    try{
 
-        if (e.target.classList.contains("approve-btn")) {
+        // View Details
+        if(e.target.classList.contains("view-btn")){
 
-            await updateDoc(docRef, {
-                status: "Approved"
-            });
+            const snap = await getDoc(docRef);
 
-        }
+            if(snap.exists()){
 
-        if (e.target.classList.contains("reject-btn")) {
+                const data = snap.data();
 
-            await updateDoc(docRef, {
-                status: "Rejected"
-            });
+                alert(
 
-        }
+`HBML CAPITAL
 
-        if (e.target.classList.contains("delete-btn")) {
+Name : ${data.name || ""}
 
-            if (confirm("Delete this application?")) {
+Mobile : ${data.mobile || ""}
 
-                await deleteDoc(docRef);
+Email : ${data.email || ""}
+
+Loan Type : ${data.loanType || ""}
+
+Loan Amount : ₹${data.loanAmount || ""}
+
+Address : ${data.address || ""}
+
+Status : ${data.status || "Pending"}`
+
+                );
 
             }
 
         }
 
-    } catch (err) {
+        // Approve
+        if(e.target.classList.contains("approve-btn")){
+
+            await updateDoc(docRef,{
+                status:"Approved"
+            });
+
+            alert("Application Approved");
+
+        }
+
+        // Reject
+        if(e.target.classList.contains("reject-btn")){
+
+            await updateDoc(docRef,{
+                status:"Rejected"
+            });
+
+            alert("Application Rejected");
+
+        }
+
+        // Delete
+        if(e.target.classList.contains("delete-btn")){
+
+            if(confirm("Delete this application?")){
+
+                await deleteDoc(docRef);
+
+                alert("Application Deleted");
+
+            }
+
+        }
+
+    }catch(err){
+
+        console.error(err);
 
         alert(err.message);
-        console.error(err);
 
     }
 
 });
+// ==============================
+// Advanced Search
+// ==============================
+const searchBox = document.getElementById("searchBox");
 
+if (searchBox) {
 
-// =======================
-// Search
-// =======================
-document.getElementById("searchBox").addEventListener("keyup", function () {
+    searchBox.addEventListener("keyup", function () {
 
-    const value = this.value.toLowerCase();
+        const value = this.value.toLowerCase();
 
-    document.querySelectorAll("#loanTable tr").forEach(row => {
+        document.querySelectorAll("#loanTable tr").forEach(row => {
 
-        const name = row.cells[0]?.innerText.toLowerCase() || "";
-        const mobile = row.cells[1]?.innerText.toLowerCase() || "";
+            const text = row.innerText.toLowerCase();
 
-        if (name.includes(value) || mobile.includes(value)) {
-            row.style.display = "";
-        } else {
-            row.style.display = "none";
-        }
+            row.style.display = text.includes(value) ? "" : "none";
+
+        });
 
     });
 
-});
+}
 
 
-// =======================
-// Filter Buttons
-// =======================
+// ==============================
+// Filter by Status
+// ==============================
 window.filterStatus = function(status){
 
-    const rows = document.querySelectorAll("#loanTable tr");
+    document.querySelectorAll("#loanTable tr").forEach(row=>{
 
-    rows.forEach(row=>{
+        if(status==="All"){
 
-        if(status === "All"){
-            row.style.display = "";
+            row.style.display="";
+
             return;
+
         }
 
-        const rowStatus = row.cells[4]?.innerText.trim();
+        const rowStatus=row.cells[4]?.innerText.trim();
 
-        if(rowStatus === status){
-            row.style.display = "";
-        }else{
-            row.style.display = "none";
-        }
+        row.style.display=rowStatus===status?"":"none";
 
     });
+
+};
+
+
+// ==============================
+// Sort by Amount
+// ==============================
+window.sortAmount=function(order){
+
+    const tbody=document.getElementById("loanTable");
+
+    const rows=Array.from(tbody.querySelectorAll("tr"));
+
+    rows.sort((a,b)=>{
+
+        const aAmt=parseFloat(a.cells[3].innerText.replace(/[₹,]/g,""))||0;
+
+        const bAmt=parseFloat(b.cells[3].innerText.replace(/[₹,]/g,""))||0;
+
+        return order==="asc"
+            ?aAmt-bAmt
+            :bAmt-aAmt;
+
+    });
+
+    tbody.innerHTML="";
+
+    rows.forEach(r=>tbody.appendChild(r));
+
+};
+
+
+// ==============================
+// WhatsApp Applicant
+// ==============================
+window.whatsappApplicant=function(mobile){
+
+    if(!mobile)return;
+
+    window.open(`https://wa.me/91${mobile}`,"_blank");
+
+};
+
+
+// ==============================
+// Call Applicant
+// ==============================
+window.callApplicant=function(mobile){
+
+    if(!mobile)return;
+
+    window.location.href=`tel:${mobile}`;
+
+};
+
+
+// ==============================
+// Copy Row
+// ==============================
+window.copyRow=function(button){
+
+    const row=button.closest("tr");
+
+    navigator.clipboard.writeText(row.innerText);
+
+    alert("Copied");
+
+};
+
+
+// ==============================
+// Print Table
+// ==============================
+window.printApplications=function(){
+
+    window.print();
 
 };
