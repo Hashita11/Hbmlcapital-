@@ -432,7 +432,15 @@ tableBody.addEventListener("click", async function(e){
         document.getElementById("dIncome").innerText = data.monthlyIncome || "";
         document.getElementById("dPurpose").innerText = data.loanPurpose || "";
         document.getElementById("dStatus").innerText = data.status || "Pending";
+document.getElementById("dPhoto").src =
+data.photo ||
+"https://via.placeholder.com/120";
 
+document.getElementById("aadhaarLink").href =
+data.aadhaarFile || "#";
+
+document.getElementById("panLink").href =
+data.panFile || "#";
         document.getElementById("customerModal").style.display = "block";
 
     }catch(error){
@@ -826,5 +834,14 @@ if(e.target==document.getElementById("customerModal")){
 document.getElementById("customerModal").style.display="none";
 
 }
+
+};
+// ======================
+// Download PDF
+// ======================
+
+window.downloadPDF=function(){
+
+window.print();
 
 };
