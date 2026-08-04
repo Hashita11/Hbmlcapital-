@@ -1,33 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-    <img src="hbml-logo.png" alt="HBML Capital Logo" height="60">
-    <div style="text-align:center;margin-bottom:15px;">
-    <img src="hbml-logo.png" alt="HBML Capital Logo" height="70">
-    
-</div>
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>HBML Admin Dashboard</title>
 
 <style>
+
 body{
     font-family:Arial,sans-serif;
     background:#f4f7fc;
     margin:20px;
 }
 
-h2{
+.logo{
     text-align:center;
-    color:#0b2c5f;
     margin-bottom:20px;
+}
+
+.logo img{
+    height:70px;
+}
+
+.logo h2{
+    color:#0b2c5f;
+    margin-top:10px;
+}
+
+.dashboard{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.card{
+    background:#0b2c5f;
+    color:#fff;
+    flex:1;
+    min-width:170px;
+    padding:20px;
+    text-align:center;
+    border-radius:10px;
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
+}
+
+.card h3{
+    color:#FFD700;
+    font-size:30px;
+    margin:0;
+}
+
+.card p{
+    margin-top:8px;
+}
+
+#searchBox{
+    width:100%;
+    padding:12px;
+    font-size:16px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    margin-bottom:15px;
+}
+
+.filters{
+    margin-bottom:20px;
+}
+
+.filters button{
+    padding:10px 16px;
+    margin:5px;
+    background:#0b2c5f;
+    color:#fff;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.filters button:hover{
+    background:#FFD700;
+    color:#000;
 }
 
 table{
     width:100%;
     border-collapse:collapse;
     background:#fff;
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
 }
 
 th{
@@ -46,6 +107,21 @@ tr:nth-child(even){
     background:#f9f9f9;
 }
 
+.approve-btn{
+    background:green;
+    color:white;
+}
+
+.reject-btn{
+    background:red;
+    color:white;
+}
+
+.delete-btn{
+    background:#444;
+    color:white;
+}
+
 button{
     padding:6px 12px;
     border:none;
@@ -54,63 +130,34 @@ button{
     margin:2px;
 }
 
-.approve{
-    background:green;
-    color:white;
-}
-
-.reject{
-    background:red;
-    color:white;
-}
-
-.delete{
-    background:#444;
-    color:white;
-}
-
 @media(max-width:768px){
-    table{
-        font-size:12px;
-    }
 
-    th,td{
-        padding:6px;
-    }
-
-    button{
-        padding:4px 8px;
-        font-size:11px;
-    }
-}
-    .card{
-background:#0b2c5f;
-color:white;
-padding:20px;
-border-radius:10px;
-flex:1;
-min-width:170px;
-text-align:center;
-box-shadow:0 3px 10px rgba(0,0,0,.15);
+.dashboard{
+flex-direction:column;
 }
 
-.card h3{
-font-size:30px;
-margin:0;
-color:#FFD700;
+table{
+font-size:12px;
 }
 
-.card p{
-margin-top:8px;
+th,td{
+padding:6px;
 }
+
+}
+
 </style>
 
 </head>
 
 <body>
 
+<div class="logo">
+<img src="hbml-logo.png" alt="HBML Logo">
 <h2>HBML Loan Applications</h2>
-<div style="display:flex;flex-wrap:wrap;gap:15px;margin:20px 0;">
+</div>
+
+<div class="dashboard">
 
 <div class="card">
 <h3 id="totalApps">0</h3>
@@ -134,17 +181,27 @@ margin-top:8px;
 
 </div>
 
-<input<button onclick="filterStatus('All')">All</button>
-<button onclick="filterStatus('Pending')">Pending</button>
-<button onclick="filterStatus('Approved')">Approved</button>
-<button onclick="filterStatus('Rejected')">Rejected</button>
-<type="text"
+<input
+type="text"
 id="searchBox"
-placeholder="Search by Name or Mobile"
-style="width:100%;padding:12px;font-size:16px;margin-bottom:15px;border:1px solid #ccc;border-radius:6px;">
+placeholder="🔍 Search by Name or Mobile">
+
+<div class="filters">
+
+<button onclick="filterStatus('All')">All</button>
+
+<button onclick="filterStatus('Pending')">Pending</button>
+
+<button onclick="filterStatus('Approved')">Approved</button>
+
+<button onclick="filterStatus('Rejected')">Rejected</button>
+
+</div>
+
 <table>
 
 <thead>
+
 <tr>
 <th>Name</th>
 <th>Mobile</th>
@@ -153,6 +210,7 @@ style="width:100%;padding:12px;font-size:16px;margin-bottom:15px;border:1px soli
 <th>Status</th>
 <th>Action</th>
 </tr>
+
 </thead>
 
 <tbody id="loanTable">
@@ -164,4 +222,5 @@ style="width:100%;padding:12px;font-size:16px;margin-bottom:15px;border:1px soli
 <script type="module" src="admin.js"></script>
 
 </body>
+
 </html>
