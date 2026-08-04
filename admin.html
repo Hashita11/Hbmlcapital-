@@ -85,7 +85,35 @@ button{
 <body>
 
 <h2>HBML Loan Applications</h2>
+<div style="display:flex;flex-wrap:wrap;gap:15px;margin:20px 0;">
 
+<div class="card">
+<h3 id="totalApps">0</h3>
+<p>Total Applications</p>
+</div>
+
+<div class="card">
+<h3 id="pendingApps">0</h3>
+<p>Pending</p>
+</div>
+
+<div class="card">
+<h3 id="approvedApps">0</h3>
+<p>Approved</p>
+</div>
+
+<div class="card">
+<h3 id="rejectedApps">0</h3>
+<p>Rejected</p>
+</div>
+
+</div>
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search by Name or Mobile"
+style="width:100%;padding:12px;font-size:16px;margin-bottom:15px;border:1px solid #ccc;border-radius:6px;">
 <table>
 
 <thead>
