@@ -298,6 +298,16 @@ placeholder="🔍 Search by Name or Mobile">
 <span id="closeModal">&times;</span>
 
 <h2>Loan Application Details</h2>
+<div style="text-align:center;margin-bottom:15px;">
+
+<img id="dPhoto"
+src="https://via.placeholder.com/120"
+width="120"
+height="120"
+style="border-radius:50%;border:3px solid #0b2c5f;">
+
+</div>
+
 <table class="detailTable">
 
 <tr><td><b>Name</b></td><td id="dName"></td></tr>
@@ -320,16 +330,34 @@ placeholder="🔍 Search by Name or Mobile">
 
 <tr><td><b>Status</b></td><td id="dStatus"></td></tr>
 
+<tr>
+<td><b>Aadhaar</b></td>
+<td>
+<a id="aadhaarLink" href="#" target="_blank">
+View Aadhaar
+</a>
+</td>
+</tr>
+
+<tr>
+<td><b>PAN</b></td>
+<td>
+<a id="panLink" href="#" target="_blank">
+View PAN
+</a>
+</td>
+</tr>
+
 </table>
 
 <br>
 
-<button onclick="printReport()">
-Print
+<button onclick="window.print()">
+🖨 Print
 </button>
 
-<button onclick="exportCSV()">
-Export CSV
+<button onclick="downloadPDF()">
+📄 Download PDF
 </button>
 
 </div>
