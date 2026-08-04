@@ -22,11 +22,22 @@ onSnapshot(collection(db, "loan_applications"), (snapshot) => {
         </tr>`;
         return;
     }
-
+let total = 0;
+let pending = 0;
+let approved = 0;
+let rejected = 0;
     snapshot.forEach((item) => {
 
         const data = item.data();
+total++;
 
+if(data.status==="Approved"){
+approved++;
+}else if(data.status==="Rejected"){
+rejected++;
+}else{
+pending++;
+}
         tableBody.innerHTML += `
         <tr>
             <td>${data.name || ""}</td>
@@ -43,6 +54,10 @@ onSnapshot(collection(db, "loan_applications"), (snapshot) => {
     });
 
 });
+document.getElementById("totalApps").innerText = total;
+document.getElementById("pendingApps").innerText = pending;
+document.getElementById("approvedApps").innerText = approved;
+document.getElementById("rejectedApps").innerText = rejected;
 
 // Button Click Events
 tableBody.addEventListener("click", async (e) => {
@@ -87,5 +102,19 @@ tableBody.addEventListener("click", async (e) => {
         alert(err.message);
 
     }
+
+});
+document.getElementById("searchBox").addEventListener("keyup", function(){
+
+const value = this.value.toLowerCase();
+
+document.querySelectorAll("#loanTable tr").forEach(row=>{
+
+row.style.display =
+row.innerText.toLowerCase().includes(value)
+? ""
+: "none";
+
+});
 
 });
