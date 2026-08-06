@@ -798,3 +798,129 @@ if (closeCustomerBtn) {
         document.getElementById("customerModal").style.display = "none";
     };
 }
+// loan agreement 
+document.getElementById("downloadAgreementBtn").addEventListener("click", function () {
+
+    const name = document.getElementById("dName").innerText;
+    const mobile = document.getElementById("dMobile").innerText;
+    const loan = document.getElementById("dLoan").innerText;
+    const amount = document.getElementById("dAmount").innerText;
+
+    const agreement = `
+HBML CAPITAL PRIVATE LIMITED
+
+LOAN AGREEMENT
+
+Customer Name : ${name}
+
+Mobile : ${mobile}
+
+Loan Type : ${loan}
+
+Loan Amount : ${amount}
+
+Terms & Conditions
+
+1. Customer agrees to repay the loan.
+2. EMI must be paid on time.
+3. HBML Capital reserves all rights.
+
+Signature
+
+Customer : ______________
+
+Authorized Officer : ______________
+`;
+
+    const blob = new Blob([agreement], {
+        type: "text/plain"
+    });
+
+    const a = document.createElement("a");
+
+    a.href = URL.createObjectURL(blob);
+
+    a.download = "Loan_Agreement.txt";
+
+    a.click();
+
+});
+//PDF Button
+
+window.downloadPDF = function () {
+
+    window.print();
+
+};
+// Dashboard clock
+
+setInterval(function(){
+
+document.getElementById("clock").innerHTML=
+new Date().toLocaleString();
+
+},1000);
+//welcome message 
+const hour=new Date().getHours();
+
+let msg="Welcome";
+
+if(hour<12){
+
+msg="🌅 Good Morning";
+
+}else if(hour<17){
+
+msg="☀ Good Afternoon";
+
+}else{
+
+msg="🌙 Good Evening";
+
+}
+
+document.getElementById("welcome").innerHTML=
+msg+" Admin";
+//footer
+document.getElementById("footerText").innerHTML=
+"© 2026 HBML Capital Pvt Ltd. All Rights Reserved.";
+//keyboard shortcuts 
+document.addEventListener("keydown",function(e){
+
+if(e.ctrlKey && e.key==="p"){
+
+e.preventDefault();
+
+window.print();
+
+}
+
+if(e.ctrlKey && e.key==="e"){
+
+e.preventDefault();
+
+exportCSV();
+
+}
+
+if(e.ctrlKey && e.key==="r"){
+
+e.preventDefault();
+
+location.reload();
+
+}
+
+});
+//close button 
+document.getElementById("closeCustomerBtn").onclick=function(){
+
+document.getElementById("customerModal").style.display="none";
+
+};
+
+document.getElementById("closeModal").onclick=function(){
+
+document.getElementById("customerModal").style.display="none";
+
+};
