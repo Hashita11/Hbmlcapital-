@@ -791,3 +791,10 @@ window.addEventListener("load",function(){
     console.log("HBML Capital Dashboard Successfully Loaded");
 
 });
+const closeCustomerBtn = document.getElementById("closeCustomerBtn");
+
+if (closeCustomerBtn) {
+    closeCustomerBtn.onclick = function () {
+        document.getElementById("customerModal").style.display = "none";
+    };
+}
