@@ -840,7 +840,7 @@ Authorized Officer : ______________
 
     a.href = URL.createObjectURL(blob);
 
-    a.download = "Loan_Agreement.txt";
+    window.print();
 
     a.click();
 
@@ -852,38 +852,9 @@ window.downloadPDF = function () {
     window.print();
 
 };
-// Dashboard clock
 
-setInterval(function(){
 
-document.getElementById("clock").innerHTML=
-new Date().toLocaleString();
 
-},1000);
-//welcome message 
-const hour=new Date().getHours();
-
-let msg="Welcome";
-
-if(hour<12){
-
-msg="🌅 Good Morning";
-
-}else if(hour<17){
-
-msg="☀ Good Afternoon";
-
-}else{
-
-msg="🌙 Good Evening";
-
-}
-
-document.getElementById("welcome").innerHTML=
-msg+" Admin";
-//footer
-document.getElementById("footerText").innerHTML=
-"© 2026 HBML Capital Pvt Ltd. All Rights Reserved.";
 //keyboard shortcuts 
 document.addEventListener("keydown",function(e){
 
@@ -919,8 +890,3 @@ document.getElementById("customerModal").style.display="none";
 
 };
 
-document.getElementById("closeModal").onclick=function(){
-
-document.getElementById("customerModal").style.display="none";
-
-};
