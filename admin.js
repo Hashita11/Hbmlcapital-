@@ -840,7 +840,7 @@ Authorized Officer : ______________
 
     a.href = URL.createObjectURL(blob);
 
-    window.print();
+    a.download = "HBML_Loan_Agreement.txt";
 
     a.click();
 
@@ -855,38 +855,6 @@ window.downloadPDF = function () {
 
 
 
-//keyboard shortcuts 
-document.addEventListener("keydown",function(e){
 
-if(e.ctrlKey && e.key==="p"){
 
-e.preventDefault();
-
-window.print();
-
-}
-
-if(e.ctrlKey && e.key==="e"){
-
-e.preventDefault();
-
-exportCSV();
-
-}
-
-if(e.ctrlKey && e.key==="r"){
-
-e.preventDefault();
-
-location.reload();
-
-}
-
-});
-//close button 
-document.getElementById("closeCustomerBtn").onclick=function(){
-
-document.getElementById("customerModal").style.display="none";
-
-};
 
